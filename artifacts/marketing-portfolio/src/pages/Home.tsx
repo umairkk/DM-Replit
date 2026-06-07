@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { 
   ArrowRight, 
+  Award,
   BarChart3, 
   Briefcase,
   Calendar,
@@ -58,6 +59,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
+import { CLIENT_LOGOS, PARTNER_BADGES } from "@/content/site-content";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -257,6 +259,7 @@ export default function Home() {
             <button onClick={() => scrollTo("ecommerce")} className="hover:text-foreground transition-colors">E-commerce</button>
             <button onClick={() => scrollTo("leadgen")} className="hover:text-foreground transition-colors">Lead Gen</button>
             <button onClick={() => scrollTo("casestudies")} className="hover:text-foreground transition-colors">Case Studies</button>
+            <button onClick={() => scrollTo("clients")} className="hover:text-foreground transition-colors">Clients</button>
             <button onClick={() => scrollTo("hire")} className="hover:text-foreground transition-colors">Hire Me</button>
             <button onClick={() => scrollTo("schedule")} className="hover:text-foreground transition-colors">Schedule</button>
             <button onClick={() => scrollTo("testimonials")} className="hover:text-foreground transition-colors">Testimonials</button>
@@ -447,6 +450,54 @@ export default function Home() {
           ))}
         </motion.div>
       </div>
+
+      {/* Partner & Certification Badges */}
+      <section id="partners" className="py-16 relative border-b border-white/5 bg-card/10">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={FADE_UP}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
+              <Award size={14} /> Certifications & Partnerships
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Platform-certified performance marketer</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
+              Official partner status across the ad networks I manage daily — Google, Meta, Microsoft, LinkedIn and Upwork.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={STAGGER}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
+          >
+            {PARTNER_BADGES.map((badge) => (
+              <motion.div
+                key={badge.name}
+                variants={FADE_UP}
+                className={`group relative rounded-2xl border ${badge.border} bg-gradient-to-br ${badge.gradient} p-5 hover:scale-[1.03] transition-transform duration-300`}
+              >
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Check size={14} className={badge.accent} />
+                </div>
+                <div
+                  className={`w-11 h-11 rounded-xl bg-background/60 border border-white/10 flex items-center justify-center text-sm font-black mb-4 ${badge.accent}`}
+                >
+                  {badge.mark}
+                </div>
+                <h3 className="text-sm font-bold leading-snug mb-1">{badge.name}</h3>
+                <p className="text-[11px] text-muted-foreground leading-relaxed">{badge.subtitle}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* About Section */}
       <section id="about" className="py-24 relative">
@@ -1018,6 +1069,83 @@ export default function Home() {
             >
               Book a Free Strategy Call <ArrowRight size={16} className="ml-2" />
             </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Client Logos */}
+      <section id="clients" className="py-24 relative overflow-hidden border-y border-white/5 bg-card/15">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.03)_0%,transparent_50%,rgba(139,92,246,0.03)_100%)] pointer-events-none" />
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={FADE_UP}
+            className="text-center mb-14"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
+              <Briefcase size={14} /> Trusted By
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Brands & agencies I've worked with</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              From DTC e-commerce to high-ticket lead gen — delivering measurable growth across industries.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={STAGGER}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6"
+          >
+            {CLIENT_LOGOS.map((client, i) => {
+              const inner = (
+                <div
+                  className={`group relative flex h-24 md:h-28 items-center justify-center rounded-2xl border px-4 transition-all duration-300 ${
+                    client.src
+                      ? "border-white/8 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]"
+                      : "border-dashed border-white/15 bg-white/[0.02] hover:border-primary/30"
+                  }`}
+                >
+                  {client.src ? (
+                    <img
+                      src={client.src}
+                      alt={`${client.name} logo`}
+                      className="max-h-10 md:max-h-12 w-auto max-w-[85%] object-contain opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  ) : (
+                    <div className="text-center px-2">
+                      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-sm font-bold text-muted-foreground group-hover:text-primary group-hover:border-primary/30 transition-colors">
+                        {client.name.charAt(0)}
+                      </div>
+                      <span className="block text-[11px] font-medium text-muted-foreground/70 group-hover:text-muted-foreground transition-colors">
+                        {client.name}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              );
+
+              return (
+                <motion.div key={`${client.name}-${i}`} variants={FADE_UP}>
+                  {client.href ? (
+                    <a
+                      href={client.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                      aria-label={client.name}
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    inner
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

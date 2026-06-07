@@ -40,3 +40,17 @@ The Vite dev server proxies `/api` to `http://localhost:3001` by default.
 ## Calendly
 
 Update `CALENDLY_URL` in `artifacts/marketing-portfolio/src/pages/Home.tsx` with your scheduling link.
+
+## Partner badges & client logos
+
+Edit `artifacts/marketing-portfolio/src/content/site-content.ts`:
+
+- **Partner badges** — update names or styling in `PARTNER_BADGES`
+- **Client logos** — add PNG/SVG files to `public/clients/`, then set each client's `name`, `src` (e.g. `/clients/acme.png`), and optional `href`
+
+```ts
+export const CLIENT_LOGOS: ClientLogo[] = [
+  { name: "Acme Corp", src: "/clients/acme.png", href: "https://acme.com" },
+  { name: "Brand Co", src: "/clients/brand-co.svg" },
+];
+```
