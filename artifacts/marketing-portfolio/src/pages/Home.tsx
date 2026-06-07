@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "wouter";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   ArrowRight, 
   Award,
@@ -60,6 +59,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PartnerBadgeIcon } from "@/components/partner-badge-icon";
 import { ClientLogoCarousel } from "@/components/client-logo-carousel";
 import { SiteHeader } from "@/components/site-header";
+import { BookCallButton } from "@/components/cro/book-call-button";
+import { CaseStudiesSection } from "@/components/cro/case-studies-section";
+import { CertificationsRow } from "@/components/cro/certifications-row";
+import { CountUp } from "@/components/cro/count-up";
+import { EnhancedTestimonialsSection } from "@/components/cro/enhanced-testimonials-section";
+import { LeadMagnetSection } from "@/components/cro/lead-magnet-section";
+import { ResultsSection } from "@/components/cro/results-section";
+import { RoiCalculatorSection } from "@/components/cro/roi-calculator-section";
+import { ServicesSection } from "@/components/cro/services-section";
+import { StickyMobileCta } from "@/components/cro/sticky-mobile-cta";
+import { VideoIntroSection } from "@/components/cro/video-intro-section";
+import { WhyWorkWithMeSection } from "@/components/cro/why-work-with-me-section";
+import {
+  ABOUT_CREDIBILITY,
+  CALENDLY_URL,
+  HERO_STATS,
+} from "@/content/cro-content";
 import {
   CLIENT_LOGOS_ROW_ONE,
   CLIENT_LOGOS_ROW_TWO,
@@ -93,11 +109,11 @@ const STAGGER = {
 };
 
 const TYPED_WORDS = [
-  "Digital Marketing Specialist.",
   "Google Ads Expert.",
   "Meta Ads Strategist.",
-  "Performance Marketer.",
-  "SEO & PPC Specialist.",
+  "Lead Generation Specialist.",
+  "Ecommerce Growth Marketer.",
+  "Performance Marketing Consultant.",
 ];
 
 const MARQUEE_ITEMS = [
@@ -107,23 +123,6 @@ const MARQUEE_ITEMS = [
   "ROAS Optimization", "Lead Generation", "Retargeting", "CRO",
 ];
 
-function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const motionVal = useMotionValue(0);
-  const spring = useSpring(motionVal, { duration: 1800, bounce: 0 });
-  const [display, setDisplay] = useState("0");
-
-  useEffect(() => {
-    if (inView) motionVal.set(to);
-  }, [inView, to, motionVal]);
-
-  useEffect(() => {
-    return spring.on("change", (v) => setDisplay(Math.round(v).toString()));
-  }, [spring]);
-
-  return <span ref={ref}>{display}{suffix}</span>;
-}
 
 export default function Home() {
   const { toast } = useToast();
@@ -200,7 +199,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, wordIndex]);
 
-  const CALENDLY_URL = "https://calendly.com/umairkk53";
+  const CALENDLY_URL_LOCAL = CALENDLY_URL;
+
+  const scrollToSchedule = () => scrollTo("schedule");
 
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
@@ -247,7 +248,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground font-sans overflow-x-hidden pb-24 md:pb-0">
       {/* Cursor spotlight */}
       <div ref={cursorGlowRef} className="fixed inset-0 pointer-events-none z-[998]" />
       {/* Dot grid texture */}
@@ -256,6 +257,7 @@ export default function Home() {
         style={{ backgroundImage: "radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px)", backgroundSize: "36px 36px" }}
       />
       <SiteHeader scrolled={scrolled} onNavigate={scrollTo} />
+      <StickyMobileCta onBookCall={scrollToSchedule} />
 
       {/* Hero Section */}
       <section className="relative min-h-[100svh] flex items-center pt-16 md:pt-20 overflow-hidden">
@@ -312,8 +314,18 @@ export default function Home() {
               
               <motion.h1 variants={FADE_UP} className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6"
                 style={{ textShadow: "0 0 40px rgba(59,130,246,0.15)" }}>
-                Hi, I'm Umair. <br />
+                Generate More Leads &amp; Revenue with{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                  Performance Marketing
+                </span>
+              </motion.h1>
+              
+              <motion.p variants={FADE_UP} className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
+                I help businesses scale Google Ads, Meta Ads, and lead-gen campaigns with data-driven strategy — turning ad spend into measurable revenue, not wasted clicks.
+              </motion.p>
+
+              <motion.p variants={FADE_UP} className="text-sm text-primary/90 font-medium mb-8">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary inline-block min-w-[200px]">
                   {typedText}
                   <motion.span
                     animate={{ opacity: [1, 0, 1] }}
@@ -321,37 +333,26 @@ export default function Home() {
                     className="inline-block w-[3px] h-[0.85em] bg-primary ml-0.5 align-middle rounded-sm"
                   />
                 </span>
-              </motion.h1>
-              
-              <motion.p variants={FADE_UP} className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
-                I run high-ROI Google, Bing, Meta and LinkedIn ad campaigns. 10+ years of paid acquisition, analytics and SEO — engineered to deliver up to 10x ROI for agencies, e-commerce and SaaS clients.
               </motion.p>
               
-              <motion.div variants={FADE_UP} className="flex flex-col sm:flex-row items-center gap-4">
-                <Button size="lg" onClick={() => scrollTo("ecommerce")} className="w-full sm:w-auto rounded-full text-base h-12 px-8 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all border border-primary/50">
-                  View Industries
-                </Button>
-                <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="w-full sm:w-auto rounded-full text-base h-12 px-8 border-white/10 hover:bg-white/5">
-                  Contact Me
+              <motion.div variants={FADE_UP} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                <BookCallButton onClick={scrollToSchedule} className="w-full sm:w-auto h-12 px-8" />
+                <Button size="lg" variant="outline" onClick={() => scrollTo("casestudies")} className="w-full sm:w-auto rounded-full text-base h-12 px-8 border-white/10 hover:bg-white/5">
+                  View Case Studies
                 </Button>
               </motion.div>
 
               <motion.div
                 variants={FADE_UP}
-                className="md:hidden grid grid-cols-2 gap-3 mt-8"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 md:hidden"
               >
-                {[
-                  { value: "10+", label: "Years in paid media" },
-                  { value: "100%", label: "Job Success score" },
-                  { value: "8.2×", label: "Best ROAS achieved" },
-                  { value: "$35/hr", label: "Freelance rate" },
-                ].map((stat) => (
+                {HERO_STATS.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-white/10 bg-background/60 backdrop-blur-sm p-4 text-center"
+                    className="rounded-xl border border-white/10 bg-background/60 backdrop-blur-sm p-3 sm:p-4 text-center"
                   >
-                    <div className="text-xl font-extrabold text-primary">{stat.value}</div>
-                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug">{stat.label}</div>
+                    <div className="text-lg sm:text-xl font-extrabold text-primary">{stat.value}</div>
+                    <div className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 leading-snug">{stat.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -456,6 +457,8 @@ export default function Home() {
         </motion.div>
       </div>
 
+      <ResultsSection />
+
       {/* Partner & Certification Badges */}
       <section id="partners" className="py-16 relative border-b border-white/5 bg-card/10">
         <div className="container mx-auto px-4 sm:px-6">
@@ -503,8 +506,11 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+          <CertificationsRow />
         </div>
       </section>
+
+      <VideoIntroSection onBookCall={scrollToSchedule} />
 
       {/* About Section */}
       <section id="about" className="py-24 relative">
@@ -519,18 +525,21 @@ export default function Home() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-4">
                 <span className="w-8 h-[2px] bg-primary"></span>
-                About Me
+                About Umair Altaf
               </h2>
               <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                 <p>
-                  I'm a digital marketing specialist with 10+ years of hands-on experience running paid acquisition and analytics for digital agencies, NGOs and private clients. Based in Karachi, Pakistan and working with clients globally, I focus on one thing: delivering measurable returns on every dollar spent.
+                  Performance marketing consultant with 10+ years managing Google Ads, Meta Ads, Bing, and LinkedIn campaigns for agencies, e-commerce brands, and lead-gen businesses globally. Based in Karachi, Pakistan — serving clients worldwide.
                 </p>
                 <p>
-                  My core stack covers Google Ads (Search, PMax, Shopping, Display, Dynamic Remarketing), Meta Ads across Facebook and Instagram, Bing Ads, LinkedIn campaigns and SEO. I lean heavily on SPAG/SKAG structures, A/B testing and bid optimization to keep campaigns lean and conversion rates high.
+                  I&apos;ve generated $12M+ in tracked revenue and managed $2.5M+ in ad spend across 50+ businesses. My focus is always the same: lower CPL, higher ROAS, and clean conversion tracking you can trust.
                 </p>
                 <p>
-                  On the analytics side I work daily with Google Tag Manager, Search Console, Google Analytics and third-party data tools to set up clean tracking, audit broken accounts and tie spend back to revenue. Top Rated on Upwork with a 100% Job Success score across every completed contract.
+                  Certified across Google Ads, Google Analytics, Meta, and HubSpot. Top Rated on Upwork with 100% Job Success — every contract completed with measurable results.
                 </p>
+              </div>
+              <div className="mt-8">
+                <BookCallButton onClick={scrollToSchedule} size="sm" label="Book Free Strategy Call" />
               </div>
             </div>
             <div className="relative flex flex-col gap-6">
@@ -561,30 +570,21 @@ export default function Home() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-2xl blur-3xl opacity-50 -z-10"></div>
               <div className="grid grid-cols-2 gap-4 relative z-10">
-                <Card className="bg-card/50 border-white/5 backdrop-blur-sm">
-                  <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-4xl font-bold text-primary mb-2"><CountUp to={10} suffix="+" /></span>
-                    <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Years Exp</span>
-                  </CardContent>
-                </Card>
-                <Card className="bg-card/50 border-white/5 backdrop-blur-sm">
-                  <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-4xl font-bold text-secondary mb-2"><CountUp to={100} suffix="%" /></span>
-                    <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Job Success</span>
-                  </CardContent>
-                </Card>
-                <Card className="bg-card/50 border-white/5 backdrop-blur-sm">
-                  <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-4xl font-bold text-primary mb-2"><CountUp to={10} suffix="x" /></span>
-                    <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Avg ROI</span>
-                  </CardContent>
-                </Card>
-                <Card className="bg-card/50 border-white/5 backdrop-blur-sm">
-                  <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-                    <span className="text-4xl font-bold text-secondary mb-2">Top Rated</span>
-                    <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Upwork Badge</span>
-                  </CardContent>
-                </Card>
+                {ABOUT_CREDIBILITY.map((stat) => (
+                  <Card key={stat.label} className="bg-card/50 border-white/5 backdrop-blur-sm">
+                    <CardContent className="p-6 flex flex-col items-center justify-center text-center">
+                      <span className="text-3xl sm:text-4xl font-bold text-primary mb-2">
+                        <CountUp
+                          to={stat.value}
+                          prefix={"prefix" in stat ? stat.prefix : ""}
+                          suffix={stat.suffix}
+                          decimals={"decimals" in stat ? stat.decimals : 0}
+                        />
+                      </span>
+                      <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider leading-snug">{stat.label}</span>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -709,6 +709,9 @@ export default function Home() {
         </div>
       </section>
 
+      <ServicesSection onBookCall={scrollToSchedule} />
+      <WhyWorkWithMeSection />
+
       {/* E-commerce Portfolio Section */}
       <section id="ecommerce" className="py-24 bg-card/20 border-y border-white/5">
         <div className="container mx-auto px-4 sm:px-6">
@@ -726,10 +729,8 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold mb-3">Industries I scale on Shopify & WooCommerce</h2>
               <p className="text-muted-foreground max-w-xl">Shopping, PMax & Meta Advantage+ campaigns built around the highest-demand verticals.</p>
             </div>
-            <Button variant="outline" className="rounded-full border-white/10 shrink-0" asChild>
-              <a href="https://www.upwork.com/freelancers/~0174e59cfe9730a3cd" target="_blank" rel="noopener noreferrer">
-                View Upwork <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+            <Button variant="outline" className="rounded-full border-white/10 shrink-0" onClick={scrollToSchedule}>
+              Book Free Call <Calendar size={16} className="ml-2" />
             </Button>
           </motion.div>
 
@@ -856,229 +857,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case Studies Section */}
-      <section id="casestudies" className="py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="mb-16"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-              <TrendingUp size={14} /> Case Studies
-            </div>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Real campaigns. Real numbers.</h2>
-                <p className="text-muted-foreground max-w-2xl text-lg">
-                  Anonymised results from live client accounts across Google, Meta, Bing and LinkedIn — showing exactly what moved the needle and why.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+      <CaseStudiesSection onBookCall={scrollToSchedule} />
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={STAGGER}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
-          >
-            {[
-              {
-                label: "E-commerce · Google Shopping",
-                industry: "Fashion & Apparel",
-                platform: "Google Ads",
-                color: "primary",
-                gradient: "from-primary/20 to-primary/5",
-                border: "border-primary/30",
-                challenge: "Brand was spending $18K/mo with a stagnant 2.1x ROAS. Shopping feed was unstructured and bidding on broad match terms.",
-                actions: ["Restructured Shopping feed with custom labels by margin tier", "Migrated to Performance Max with audience signals", "Added negative keyword sculpting layer"],
-                results: [
-                  { label: "ROAS", before: "2.1×", after: "8.2×", up: true },
-                  { label: "Monthly Revenue", before: "$38K", after: "$150K", up: true },
-                  { label: "CPC", before: "$1.82", after: "$0.94", up: false },
-                ],
-                duration: "90 days",
-              },
-              {
-                label: "Lead Gen · Meta Ads",
-                industry: "Real Estate",
-                platform: "Meta Ads",
-                color: "secondary",
-                gradient: "from-secondary/20 to-secondary/5",
-                border: "border-secondary/30",
-                challenge: "Agent was generating 20 leads/mo at $180 CPL. Most leads were low-intent cold traffic with poor follow-through.",
-                actions: ["Built a 3-stage funnel: awareness video → lead magnet → retarget", "Created custom audiences from CRM and lookalikes", "Switched to Instant Forms with pre-qualification questions"],
-                results: [
-                  { label: "CPL", before: "$180", after: "$68", up: false },
-                  { label: "Monthly Leads", before: "20", after: "74", up: true },
-                  { label: "Qualified Rate", before: "22%", after: "61%", up: true },
-                ],
-                duration: "60 days",
-              },
-              {
-                label: "Lead Gen · Google Search",
-                industry: "Personal Injury Law",
-                platform: "Google Ads",
-                color: "primary",
-                gradient: "from-primary/20 to-primary/5",
-                border: "border-primary/30",
-                challenge: "Legal firm spending $25K/mo in a high-CPC market ($45–90/click) with a 2.8% conversion rate and zero call tracking.",
-                actions: ["Deployed GTM call-tracking + GA4 funnel events", "Pruned to exact/phrase match on highest-intent terms", "Built dedicated landing pages per case type"],
-                results: [
-                  { label: "Conversion Rate", before: "2.8%", after: "7.4%", up: true },
-                  { label: "Cost Per Case Lead", before: "$312", after: "$127", up: false },
-                  { label: "Cases Contacted/mo", before: "18", after: "52", up: true },
-                ],
-                duration: "75 days",
-              },
-              {
-                label: "B2B · LinkedIn Ads",
-                industry: "SaaS — HR Tech",
-                platform: "LinkedIn Ads",
-                color: "secondary",
-                gradient: "from-secondary/20 to-secondary/5",
-                border: "border-secondary/30",
-                challenge: "SaaS startup running broad awareness campaigns with no retargeting. CAC was $1,200 and demo bookings were only 8/mo.",
-                actions: ["Layered job title + company size audience segmentation", "Built retargeting sequence for website visitors", "Introduced lead gen forms with gated whitepaper offer"],
-                results: [
-                  { label: "Demo Bookings/mo", before: "8", after: "31", up: true },
-                  { label: "CAC", before: "$1,200", after: "$680", up: false },
-                  { label: "Pipeline Value", before: "$48K", after: "$186K", up: true },
-                ],
-                duration: "120 days",
-              },
-              {
-                label: "E-commerce · Google + Bing",
-                industry: "Electronics",
-                platform: "Google + Bing Ads",
-                color: "primary",
-                gradient: "from-primary/20 to-primary/5",
-                border: "border-primary/30",
-                challenge: "Store running on Google only with a 3.1x ROAS. No Bing presence despite high-intent buyers on Microsoft's network.",
-                actions: ["Imported campaigns to Microsoft Advertising and bid-adjusted for Bing audience", "Set up smart bidding with target ROAS goals", "Added remarketing lists to Search (RLSA) for cart abandoners"],
-                results: [
-                  { label: "Combined ROAS", before: "3.1×", after: "6.8×", up: true },
-                  { label: "Monthly Ad Spend", before: "$22K", after: "$41K", up: true },
-                  { label: "Blended CPC", before: "$1.54", after: "$0.88", up: false },
-                ],
-                duration: "45 days",
-              },
-              {
-                label: "Lead Gen · Google Local",
-                industry: "HVAC & Plumbing",
-                platform: "Google Ads + LSA",
-                color: "secondary",
-                gradient: "from-secondary/20 to-secondary/5",
-                border: "border-secondary/30",
-                challenge: "Local contractor paying $85 per call through an agency. No Local Service Ads (LSA) set up. Reviews weren't being leveraged.",
-                actions: ["Set up and optimised Google Local Service Ads (guaranteed calls)", "Built hyper-local ad groups by neighbourhood and service type", "Added call extensions with call-only campaigns for mobile"],
-                results: [
-                  { label: "Cost Per Call", before: "$85", after: "$19", up: false },
-                  { label: "Monthly Calls", before: "28", after: "140", up: true },
-                  { label: "Booked Jobs/mo", before: "11", after: "58", up: true },
-                ],
-                duration: "30 days",
-              },
-            ].map((cs, i) => (
-              <motion.div key={i} variants={FADE_UP}>
-                <div className={`h-full rounded-2xl border ${cs.border} bg-background/40 overflow-hidden group hover:border-opacity-80 transition-all duration-300`}>
-                  {/* Hero banner: giant primary result */}
-                  <div className={`bg-gradient-to-br ${cs.gradient} px-6 pt-6 pb-5 relative overflow-hidden`}>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[80px] font-black opacity-5 select-none leading-none pointer-events-none">
-                      {cs.results[0].after}
-                    </div>
-                    <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${
-                      cs.color === "primary"
-                        ? "bg-primary/15 text-primary border border-primary/25"
-                        : "bg-secondary/15 text-secondary border border-secondary/25"
-                    }`}>
-                      <Zap size={9} /> {cs.label}
-                    </div>
-                    <div className="flex items-end gap-4">
-                      <div>
-                        <div className={`text-5xl font-black leading-none mb-1 ${cs.color === "primary" ? "text-primary" : "text-secondary"}`}>
-                          {cs.results[0].after}
-                        </div>
-                        <div className="text-xs text-muted-foreground">{cs.results[0].label} · was {cs.results[0].before}</div>
-                      </div>
-                      <div className="ml-auto text-right pb-1">
-                        <div className="text-sm font-bold">{cs.industry}</div>
-                        <div className="text-[10px] text-muted-foreground">{cs.platform} · {cs.duration}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Body: two columns — challenge/actions | metrics */}
-                  <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {/* Left: challenge + actions */}
-                    <div className="space-y-4">
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">Challenge</p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{cs.challenge}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">What I Did</p>
-                        <ul className="space-y-1.5">
-                          {cs.actions.map((action, j) => (
-                            <li key={j} className="flex items-start gap-2 text-xs text-foreground/75">
-                              <span className={`mt-1.5 shrink-0 w-1 h-1 rounded-full ${cs.color === "primary" ? "bg-primary" : "bg-secondary"}`} />
-                              {action}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Right: all 3 metrics */}
-                    <div className="flex flex-col gap-2 justify-center">
-                      {cs.results.map((r, j) => (
-                        <div key={j} className="flex items-center gap-3 rounded-xl bg-white/3 border border-white/6 px-4 py-3">
-                          <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${r.up ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
-                            {r.up ? <TrendingUp size={13} className="text-emerald-400" /> : <TrendingDown size={13} className="text-rose-400" />}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider truncate">{r.label}</div>
-                            <div className="flex items-center gap-1.5 mt-0.5">
-                              <span className="text-[11px] text-muted-foreground line-through">{r.before}</span>
-                              <span className="text-muted-foreground/40 text-[10px]">→</span>
-                              <span className={`text-sm font-bold ${r.up ? "text-emerald-400" : "text-rose-400"}`}>{r.after}</span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="mt-14 text-center"
-          >
-            <p className="text-muted-foreground mb-6 text-base">
-              Want results like these for your campaigns?
-            </p>
-            <Button
-              onClick={() => scrollTo("schedule")}
-              size="lg"
-              className="rounded-full px-8 h-12 shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:shadow-[0_0_30px_rgba(59,130,246,0.55)] transition-all border border-primary/40"
-            >
-              Book a Free Strategy Call <ArrowRight size={16} className="ml-2" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <RoiCalculatorSection />
+      <LeadMagnetSection onBookCall={scrollToSchedule} />
 
       {/* Client Logos */}
       <section id="clients" className="py-24 relative overflow-hidden border-y border-white/5 bg-card/15">
@@ -1143,7 +925,7 @@ export default function Home() {
               <CardContent className="p-2 md:p-4">
                 <div
                   className="calendly-inline-widget rounded-xl overflow-hidden"
-                  data-url={`${CALENDLY_URL}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0a0a0a&text_color=ffffff&primary_color=3b82f6`}
+                  data-url={`${CALENDLY_URL_LOCAL}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0a0a0a&text_color=ffffff&primary_color=3b82f6`}
                   style={{ minWidth: "280px", height: "min(700px, 75vh)" }}
                 />
               </CardContent>
@@ -1161,67 +943,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="py-24">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Feedback</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Real 5-star reviews from completed Upwork contracts.</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                quote: "Appreciated Umair's work so far. It has been incredible having his support setting up our CRM, including all integrations. He also built our website and has been helping with our marketing.",
-                name: "7StarPortables",
-                role: "Marketing & Google Ads Project"
-              },
-              {
-                quote: "Umair is very good at what he does. He takes the time to explain what he is doing and does a great job. He helped me with Google Ads and I would absolutely recommend him.",
-                name: "Upwork Client",
-                role: "Google Ads Audit Specialist"
-              },
-              {
-                quote: "Umair is very proactive with his clients and did a great job in managing the account we assigned to him. He kept our client's best interest and objectives at the center of his work.",
-                name: "Marketing Agency",
-                role: "Paid Ads Strategist — Google, Bing & Facebook"
-              }
-            ].map((testimonial, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-              >
-                <Card className="bg-card/50 border-white/5 h-full relative">
-                  <div className="absolute top-6 left-6 text-primary/20">
-                    <MessageSquare size={40} />
-                  </div>
-                  <CardContent className="p-8 pt-12">
-                    <p className="text-muted-foreground leading-relaxed mb-6 relative z-10">"{testimonial.quote}"</p>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                        {testimonial.name.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                        <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <EnhancedTestimonialsSection />
 
       {/* Hire Me Section */}
       <section id="hire" className="py-24 relative overflow-hidden">
@@ -1414,6 +1136,16 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={FADE_UP}
+            className="mt-10 text-center"
+          >
+            <BookCallButton onClick={scrollToSchedule} label="Not sure which package? Book a free call" />
+          </motion.div>
         </div>
       </section>
 
@@ -1563,14 +1295,17 @@ export default function Home() {
           </div>
           
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Umair A. — Digital Marketing Specialist. All rights reserved.
+            © {new Date().getFullYear()} Umair Altaf — Performance Marketing Consultant. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-4 text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <BookCallButton onClick={scrollToSchedule} size="sm" label="Book Strategy Call" />
+            <div className="flex items-center gap-4 text-muted-foreground">
             <a href="https://www.upwork.com/freelancers/~0174e59cfe9730a3cd" target="_blank" rel="noopener noreferrer" aria-label="Upwork" className="hover:text-primary transition-colors p-2"><MessageSquare size={18} /></a>
             <a href="#" aria-label="LinkedIn" className="hover:text-primary transition-colors p-2"><Linkedin size={18} /></a>
             <a href="#" aria-label="Twitter" className="hover:text-primary transition-colors p-2"><Twitter size={18} /></a>
             <a href="#" aria-label="Instagram" className="hover:text-primary transition-colors p-2"><Instagram size={18} /></a>
+            </div>
           </div>
         </div>
       </footer>

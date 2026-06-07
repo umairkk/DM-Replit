@@ -3,13 +3,11 @@ import { Menu, Terminal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
-  { label: "About", id: "about" },
-  { label: "Skills", id: "skills" },
-  { label: "E-commerce", id: "ecommerce" },
-  { label: "Lead Gen", id: "leadgen" },
+  { label: "Results", id: "results" },
+  { label: "Services", id: "services" },
   { label: "Case Studies", id: "casestudies" },
-  { label: "Clients", id: "clients" },
-  { label: "Hire Me", id: "hire" },
+  { label: "About", id: "about" },
+  { label: "Free Audit", id: "audit" },
   { label: "Schedule", id: "schedule" },
   { label: "Testimonials", id: "testimonials" },
 ] as const;
@@ -53,7 +51,7 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
             </span>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-muted-foreground">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
@@ -68,11 +66,11 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
 
           <div className="flex items-center gap-2 shrink-0">
             <Button
-              onClick={() => handleNavigate("contact")}
+              onClick={() => handleNavigate("schedule")}
               size="sm"
               className="rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all text-xs sm:text-sm h-9 sm:h-10 px-4 sm:px-5"
             >
-              Let's Talk
+              Book Free Call
             </Button>
             <button
               type="button"
@@ -109,10 +107,10 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
               ))}
               <button
                 type="button"
-                onClick={() => handleNavigate("contact")}
+                onClick={() => handleNavigate("schedule")}
                 className="col-span-2 rounded-xl border border-primary/30 bg-primary/10 px-3 py-3 text-sm font-semibold text-primary hover:bg-primary/15 transition-colors"
               >
-                Contact
+                Book Free Strategy Call
               </button>
             </div>
           </nav>
