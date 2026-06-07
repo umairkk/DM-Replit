@@ -67,7 +67,7 @@ import {
   PARTNER_BADGES,
   TRUST_BADGES,
 } from "@/content/site-content";
-import { submitContactForm } from "@/lib/submit-contact";
+import { submitContactFormElement } from "@/lib/submit-contact";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -213,10 +213,15 @@ export default function Home() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  async function onSubmit(values: z.infer<typeof contactSchema>) {
+  async function onSubmit(values: z.infer<typeof contactSchema>, event?: React.BaseSyntheticEvent) {
     setIsSubmitting(true);
     try {
-      await submitContactForm(values);
+      const formEl = event?.target as HTMLFormElement | undefined;
+      if (formEl) {
+        await submitContactFormElement(formEl);
+      } else {
+        throw new Error("Form element not found");
+      }
       toast({
         title: "Message sent successfully!",
         description:
@@ -1476,7 +1481,20 @@ export default function Home() {
               <Card className="bg-background/80 border-white/10 backdrop-blur-xl">
                 <CardContent className="p-5 sm:p-8">
                   <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
+                      data-netlify-honeypot="bot-field"
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-6"
+                    >
+                      <input type="hidden" name="form-name" value="contact" />
+                      <p className="hidden" aria-hidden="true">
+                        <label>
+                          Don&apos;t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                        </label>
+                      </p>
                       <FormField
                         control={form.control}
                         name="name"
