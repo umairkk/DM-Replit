@@ -13,7 +13,7 @@ function LogoTile({ client }: { client: ClientLogo }) {
         <img
           src={client.src}
           alt={`${client.name} logo`}
-          className="max-h-10 md:max-h-12 w-auto max-w-full object-contain opacity-75 grayscale brightness-110 contrast-90 group-hover:opacity-100 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-300"
+          className="max-h-10 md:max-h-12 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
           loading="lazy"
         />
       ) : (
