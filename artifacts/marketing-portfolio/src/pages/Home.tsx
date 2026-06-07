@@ -532,7 +532,7 @@ export default function Home() {
                   Performance marketing consultant with 10+ years managing Google Ads, Meta Ads, Bing, and LinkedIn campaigns for agencies, e-commerce brands, and lead-gen businesses globally. Based in Karachi, Pakistan — serving clients worldwide.
                 </p>
                 <p>
-                  I&apos;ve generated $12M+ in tracked revenue and managed $2.5M+ in ad spend across 50+ businesses. My focus is always the same: lower CPL, higher ROAS, and clean conversion tracking you can trust.
+                  I&apos;ve generated $50M+ in tracked revenue and managed $15M+ in ad spend across 50+ businesses. My focus is always the same: lower CPL, higher ROAS, and clean conversion tracking you can trust.
                 </p>
                 <p>
                   Certified across Google Ads, Google Analytics, Meta, and HubSpot. Top Rated on Upwork with 100% Job Success — every contract completed with measurable results.

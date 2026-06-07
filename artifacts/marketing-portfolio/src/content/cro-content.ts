@@ -38,15 +38,15 @@ export type Testimonial = {
 };
 
 export const HERO_STATS = [
-  { value: "$12M+", label: "Revenue Generated" },
-  { value: "$2.5M+", label: "Ad Spend Managed" },
+  { value: "$50M+", label: "Revenue Generated" },
+  { value: "$15M+", label: "Ad Spend Managed" },
   { value: "15K+", label: "Leads Generated" },
   { value: "50+", label: "Businesses Served" },
 ] as const;
 
 export const RESULTS_METRICS = [
-  { value: 12, prefix: "$", suffix: "M+", label: "Revenue Generated", decimals: 0 },
-  { value: 2.5, prefix: "$", suffix: "M+", label: "Ad Spend Managed", decimals: 1 },
+  { value: 50, prefix: "$", suffix: "M+", label: "Revenue Generated", decimals: 0 },
+  { value: 15, prefix: "$", suffix: "M+", label: "Ad Spend Managed", decimals: 0 },
   { value: 15, prefix: "", suffix: "K+", label: "Leads Generated", decimals: 0 },
   { value: 68, prefix: "", suffix: "%", label: "Avg. Conversion Lift", decimals: 0 },
   { value: 94, prefix: "", suffix: "%", label: "Client Retention Rate", decimals: 0 },
@@ -322,8 +322,8 @@ export const INTRO_VIDEO_YOUTUBE_ID = "";
 
 export const ABOUT_CREDIBILITY = [
   { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 12, prefix: "$", suffix: "M+", label: "Revenue Generated" },
-  { value: 2.5, prefix: "$", suffix: "M+", label: "Ad Spend Managed", decimals: 1 },
+  { value: 50, prefix: "$", suffix: "M+", label: "Revenue Generated" },
+  { value: 15, prefix: "$", suffix: "M+", label: "Ad Spend Managed" },
   { value: 50, suffix: "+", label: "Businesses Served" },
 ] as const;
 
