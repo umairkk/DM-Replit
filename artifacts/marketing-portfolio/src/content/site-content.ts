@@ -31,6 +31,13 @@ export type ClientLogo = {
   href: string;
 };
 
+/** Replace with Stripe Payment Links when ready (leave empty or REPLACE to use contact fallback). */
+export const STRIPE_CHECKOUT_LINKS = {
+  starter: "https://buy.stripe.com/REPLACE_STARTER",
+  growth: "https://buy.stripe.com/REPLACE_GROWTH",
+  scale: "https://buy.stripe.com/REPLACE_SCALE",
+} as const;
+
 export const CONTACT_EMAIL = "info@umairaltaf.com";
 
 export type TrustBadge = {

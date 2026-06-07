@@ -8,7 +8,7 @@ type ClientLogoCarouselProps = {
 
 function LogoTile({ client }: { client: ClientLogo }) {
   const tile = (
-    <div className="group flex h-20 w-44 md:h-24 md:w-52 shrink-0 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.03] px-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]">
+    <div className="group flex h-20 w-36 sm:w-44 md:h-24 md:w-52 shrink-0 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.03] px-4 sm:px-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]">
       {client.src ? (
         <img
           src={client.src}

@@ -61,6 +61,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { PartnerBadgeIcon } from "@/components/partner-badge-icon";
 import { ClientLogoCarousel } from "@/components/client-logo-carousel";
+import { SiteHeader } from "@/components/site-header";
 import {
   CLIENT_LOGOS_ROW_ONE,
   CLIENT_LOGOS_ROW_TWO,
@@ -74,6 +75,10 @@ const contactSchema = z.object({
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
+
+function isStripeCheckoutReady(link: string) {
+  return Boolean(link && !link.includes("REPLACE"));
+}
 
 const FADE_UP = {
   hidden: { opacity: 0, y: 30 },
@@ -248,40 +253,10 @@ export default function Home() {
         className="fixed inset-0 pointer-events-none z-0 opacity-40"
         style={{ backgroundImage: "radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px)", backgroundSize: "36px 36px" }}
       />
-      {/* Sticky Navbar */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
-          scrolled ? "bg-background/80 backdrop-blur-md border-border/50 shadow-sm" : "bg-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="font-bold text-xl tracking-tight flex items-center gap-2">
-            <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center border border-primary/50 text-primary">
-              <Terminal size={18} />
-            </div>
-            <span>Umair A<span className="text-primary">.</span></span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-            <button onClick={() => scrollTo("about")} className="hover:text-foreground transition-colors">About</button>
-            <button onClick={() => scrollTo("skills")} className="hover:text-foreground transition-colors">Skills</button>
-            <button onClick={() => scrollTo("ecommerce")} className="hover:text-foreground transition-colors">E-commerce</button>
-            <button onClick={() => scrollTo("leadgen")} className="hover:text-foreground transition-colors">Lead Gen</button>
-            <button onClick={() => scrollTo("casestudies")} className="hover:text-foreground transition-colors">Case Studies</button>
-            <button onClick={() => scrollTo("clients")} className="hover:text-foreground transition-colors">Clients</button>
-            <button onClick={() => scrollTo("hire")} className="hover:text-foreground transition-colors">Hire Me</button>
-            <button onClick={() => scrollTo("schedule")} className="hover:text-foreground transition-colors">Schedule</button>
-            <button onClick={() => scrollTo("testimonials")} className="hover:text-foreground transition-colors">Testimonials</button>
-          </nav>
-          <div>
-            <Button onClick={() => scrollTo("contact")} className="rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all">
-              Let's Talk
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader scrolled={scrolled} onNavigate={scrollTo} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-center pt-16 md:pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background z-10" />
           <img 
@@ -317,8 +292,8 @@ export default function Home() {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
         />
         
-        <div className="container relative z-10 mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
             {/* Left: Copy */}
             <motion.div 
               initial="hidden"
@@ -333,7 +308,7 @@ export default function Home() {
                 Top Rated on Upwork · Available for projects
               </motion.div>
               
-              <motion.h1 variants={FADE_UP} className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6"
+              <motion.h1 variants={FADE_UP} className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6"
                 style={{ textShadow: "0 0 40px rgba(59,130,246,0.15)" }}>
                 Hi, I'm Umair. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
@@ -357,6 +332,26 @@ export default function Home() {
                 <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="w-full sm:w-auto rounded-full text-base h-12 px-8 border-white/10 hover:bg-white/5">
                   Contact Me
                 </Button>
+              </motion.div>
+
+              <motion.div
+                variants={FADE_UP}
+                className="md:hidden grid grid-cols-2 gap-3 mt-8"
+              >
+                {[
+                  { value: "10+", label: "Years in paid media" },
+                  { value: "100%", label: "Job Success score" },
+                  { value: "8.2×", label: "Best ROAS achieved" },
+                  { value: "$35/hr", label: "Freelance rate" },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-xl border border-white/10 bg-background/60 backdrop-blur-sm p-4 text-center"
+                  >
+                    <div className="text-xl font-extrabold text-primary">{stat.value}</div>
+                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug">{stat.label}</div>
+                  </div>
+                ))}
               </motion.div>
             </motion.div>
 
@@ -1147,7 +1142,7 @@ export default function Home() {
                 <div
                   className="calendly-inline-widget rounded-xl overflow-hidden"
                   data-url={`${CALENDLY_URL}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0a0a0a&text_color=ffffff&primary_color=3b82f6`}
-                  style={{ minWidth: "320px", height: "700px" }}
+                  style={{ minWidth: "280px", height: "min(700px, 75vh)" }}
                 />
               </CardContent>
             </Card>
@@ -1357,22 +1352,39 @@ export default function Home() {
                     </ul>
 
                     {/* CTA */}
-                    <a
-                      href={pkg.stripeLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center justify-center gap-2 w-full h-12 rounded-xl font-semibold text-sm transition-all ${
-                        pkg.popular
-                          ? "bg-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_20px_rgba(139,92,246,0.35)]"
-                          : "bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20"
-                      }`}
-                    >
-                      <CreditCard size={16} />
-                      Buy {pkg.hours} Hours — ${pkg.price}
-                    </a>
+                    {isStripeCheckoutReady(pkg.stripeLink) ? (
+                      <a
+                        href={pkg.stripeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center justify-center gap-2 w-full h-12 rounded-xl font-semibold text-sm transition-all ${
+                          pkg.popular
+                            ? "bg-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_20px_rgba(139,92,246,0.35)]"
+                            : "bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20"
+                        }`}
+                      >
+                        <CreditCard size={16} />
+                        Buy {pkg.hours} Hours — ${pkg.price}
+                      </a>
+                    ) : (
+                      <Button
+                        type="button"
+                        onClick={() => scrollTo("contact")}
+                        className={`w-full h-12 rounded-xl font-semibold text-sm ${
+                          pkg.popular
+                            ? "bg-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_20px_rgba(139,92,246,0.35)]"
+                            : "bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20"
+                        }`}
+                      >
+                        <Mail size={16} className="mr-2" />
+                        Contact to Purchase
+                      </Button>
+                    )}
 
                     <p className="text-[11px] text-muted-foreground text-center mt-3">
-                      Secure checkout via Stripe · Hours never expire
+                      {isStripeCheckoutReady(pkg.stripeLink)
+                        ? "Secure checkout via Stripe · Hours never expire"
+                        : "Stripe checkout coming soon · Contact me to get started"}
                     </p>
                   </CardContent>
                 </Card>
@@ -1404,18 +1416,18 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-card/30 border-t border-white/5 relative overflow-hidden">
+      <section id="contact" className="py-16 md:py-24 bg-card/30 border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={FADE_UP}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to scale? <br/>Let's talk.</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Ready to scale? <br/>Let's talk.</h2>
               <p className="text-muted-foreground text-lg mb-8">
                 Currently accepting select freelance projects at $35/hr. Free consultation — drop a message about your project and I'll get back to you within 24 hours.
               </p>
@@ -1465,18 +1477,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <Card className="bg-background/80 border-white/10 backdrop-blur-xl">
-                <CardContent className="p-8">
-                  <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">
-                      Form submissions sent to
-                    </p>
-                    <a
-                      href={`mailto:${CONTACT_EMAIL}`}
-                      className="text-sm font-medium text-primary hover:underline"
-                    >
-                      {CONTACT_EMAIL}
-                    </a>
-                  </div>
+                <CardContent className="p-5 sm:p-8">
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                       <FormField
@@ -1540,7 +1541,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-10 border-t border-white/5 bg-background">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex items-center gap-2 font-bold tracking-tight">
             <Terminal size={16} className="text-primary" />
             <span>Umair A<span className="text-primary">.</span></span>
