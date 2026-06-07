@@ -21,7 +21,6 @@ import {
   LineChart, 
   Linkedin,
   Mail, 
-  MapPin, 
   MessageSquare, 
   MousePointerClick, 
   Scale,
@@ -1411,32 +1410,6 @@ export default function Home() {
               <p className="text-muted-foreground text-lg mb-10">
                 Currently accepting select freelance projects at $35/hr. Free consultation — drop a message about your project and I'll get back to you within 24 hours.
               </p>
-
-              <div className="space-y-6">
-                <a
-                  href="https://www.upwork.com/freelancers/~0174e59cfe9730a3cd"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <div className="w-12 h-12 rounded-full bg-background border border-white/10 flex items-center justify-center text-primary">
-                    <MessageSquare size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">Hire on Upwork</p>
-                    <p className="text-foreground">Top Rated · 100% Job Success</p>
-                  </div>
-                </a>
-                <div className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors">
-                  <div className="w-12 h-12 rounded-full bg-background border border-white/10 flex items-center justify-center text-primary">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">Location</p>
-                    <p className="text-foreground">Karachi, Pakistan · Remote Worldwide</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
 
             <motion.div 
