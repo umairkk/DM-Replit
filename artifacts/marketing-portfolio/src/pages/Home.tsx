@@ -24,8 +24,9 @@ import {
   MessageSquare, 
   MousePointerClick, 
   Scale,
-  Search, 
-  Share2, 
+  Search,
+  Share2,
+  ShieldCheck,
   Shirt,
   ShoppingBag,
   Smartphone,
@@ -63,7 +64,9 @@ import { ClientLogoCarousel } from "@/components/client-logo-carousel";
 import {
   CLIENT_LOGOS_ROW_ONE,
   CLIENT_LOGOS_ROW_TWO,
+  CONTACT_EMAIL,
   PARTNER_BADGES,
+  TRUST_BADGES,
 } from "@/content/site-content";
 
 const contactSchema = z.object({
@@ -1149,7 +1152,13 @@ export default function Home() {
               </CardContent>
             </Card>
             <p className="text-center text-xs text-muted-foreground mt-4">
-              Prefer email? Scroll down to the contact form below.
+              Prefer email?{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-primary hover:underline"
+              >
+                {CONTACT_EMAIL}
+              </a>
             </p>
           </motion.div>
         </div>
@@ -1407,9 +1416,46 @@ export default function Home() {
               variants={FADE_UP}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to scale? <br/>Let's talk.</h2>
-              <p className="text-muted-foreground text-lg mb-10">
+              <p className="text-muted-foreground text-lg mb-8">
                 Currently accepting select freelance projects at $35/hr. Free consultation — drop a message about your project and I'll get back to you within 24 hours.
               </p>
+
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors mb-10 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-background border border-white/10 flex items-center justify-center text-primary group-hover:border-primary/30 transition-colors">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="text-sm font-medium">Email me directly</p>
+                  <p className="text-foreground">{CONTACT_EMAIL}</p>
+                </div>
+              </a>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { icon: Star, ...TRUST_BADGES[0] },
+                  { icon: Award, ...TRUST_BADGES[1] },
+                  { icon: TrendingUp, ...TRUST_BADGES[2] },
+                  { icon: BarChart3, ...TRUST_BADGES[3] },
+                  { icon: Clock, ...TRUST_BADGES[4] },
+                  { icon: ShieldCheck, ...TRUST_BADGES[5] },
+                ].map((badge, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.03] p-4 hover:border-white/15 transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <badge.icon size={16} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold leading-snug">{badge.title}</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">{badge.subtitle}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             <motion.div 
@@ -1420,6 +1466,17 @@ export default function Home() {
             >
               <Card className="bg-background/80 border-white/10 backdrop-blur-xl">
                 <CardContent className="p-8">
+                  <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">
+                      Form submissions sent to
+                    </p>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
+                  </div>
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                       <FormField

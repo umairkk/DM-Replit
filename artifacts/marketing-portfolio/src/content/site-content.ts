@@ -31,6 +31,41 @@ export type ClientLogo = {
   href: string;
 };
 
+export const CONTACT_EMAIL = "info@umairaltaf.com";
+
+export type TrustBadge = {
+  title: string;
+  subtitle: string;
+};
+
+/** Trust signals shown in the contact section. */
+export const TRUST_BADGES: TrustBadge[] = [
+  {
+    title: "100% Job Success",
+    subtitle: "Top Rated on Upwork",
+  },
+  {
+    title: "10+ Years Experience",
+    subtitle: "Google, Meta, Bing & LinkedIn",
+  },
+  {
+    title: "ROAS & CPL Focused",
+    subtitle: "Performance-first campaigns",
+  },
+  {
+    title: "GA4 & GTM Setup",
+    subtitle: "Clean conversion tracking",
+  },
+  {
+    title: "Reply Within 24 Hours",
+    subtitle: "Fast project turnaround",
+  },
+  {
+    title: "Confidential & Secure",
+    subtitle: "Your data stays private",
+  },
+];
+
 export const PARTNER_BADGES: PartnerBadge[] = [
   {
     id: "google",
