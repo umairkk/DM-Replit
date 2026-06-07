@@ -44,8 +44,6 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useSubmitContact } from "@workspace/api-client-react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -69,6 +67,7 @@ import {
   PARTNER_BADGES,
   TRUST_BADGES,
 } from "@/content/site-content";
+import { submitContactForm } from "@/lib/submit-contact";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -212,29 +211,27 @@ export default function Home() {
     },
   });
 
-  const submitContact = useSubmitContact({
-    mutation: {
-      onSuccess: () => {
-        toast({
-          title: "Message sent successfully!",
-          description:
-            "Thanks for reaching out. I'll get back to you within 24 hours.",
-        });
-        form.reset();
-      },
-      onError: () => {
-        toast({
-          title: "Something went wrong",
-          description:
-            "Your message couldn't be delivered. Please try again or reach me on Upwork.",
-          variant: "destructive",
-        });
-      },
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function onSubmit(values: z.infer<typeof contactSchema>) {
-    submitContact.mutate({ data: values });
+  async function onSubmit(values: z.infer<typeof contactSchema>) {
+    setIsSubmitting(true);
+    try {
+      await submitContactForm(values);
+      toast({
+        title: "Message sent successfully!",
+        description:
+          "Thanks for reaching out. I'll get back to you within 24 hours.",
+      });
+      form.reset();
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: `Please email me directly at ${CONTACT_EMAIL} or try again.`,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const scrollTo = (id: string) => {
@@ -456,7 +453,7 @@ export default function Home() {
 
       {/* Partner & Certification Badges */}
       <section id="partners" className="py-16 relative border-b border-white/5 bg-card/10">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -506,7 +503,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-24 relative">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -592,7 +589,7 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.04)_0%,transparent_50%,rgba(139,92,246,0.04)_100%)] pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -709,7 +706,7 @@ export default function Home() {
 
       {/* E-commerce Portfolio Section */}
       <section id="ecommerce" className="py-24 bg-card/20 border-y border-white/5">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -769,7 +766,7 @@ export default function Home() {
       {/* Lead Gen Portfolio Section */}
       <section id="leadgen" className="py-24 relative overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-secondary/50 to-transparent" />
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -857,7 +854,7 @@ export default function Home() {
       {/* Case Studies Section */}
       <section id="casestudies" className="py-24 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1081,7 +1078,7 @@ export default function Home() {
       {/* Client Logos */}
       <section id="clients" className="py-24 relative overflow-hidden border-y border-white/5 bg-card/15">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.03)_0%,transparent_50%,rgba(139,92,246,0.03)_100%)] pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1113,7 +1110,7 @@ export default function Home() {
       {/* Calendly Schedule Section */}
       <section id="schedule" className="py-24 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1161,7 +1158,7 @@ export default function Home() {
 
       {/* Testimonials */}
       <section id="testimonials" className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -1224,7 +1221,7 @@ export default function Home() {
       {/* Hire Me Section */}
       <section id="hire" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1317,7 +1314,7 @@ export default function Home() {
                     ? "border-secondary/50 shadow-[0_0_30px_rgba(139,92,246,0.2)] bg-card/80"
                     : "border-white/10 bg-background/60 hover:border-white/20"
                 }`}>
-                  <CardContent className="p-8 flex flex-col h-full">
+                  <CardContent className="p-5 sm:p-8 flex flex-col h-full">
                     {/* Header */}
                     <div className="mb-6">
                       <div className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-3 ${
@@ -1525,10 +1522,10 @@ export default function Home() {
                       />
                       <Button
                         type="submit"
-                        disabled={submitContact.isPending}
+                        disabled={isSubmitting}
                         className="w-full h-12 text-base font-semibold shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all disabled:opacity-70"
                       >
-                        {submitContact.isPending ? "Sending..." : "Send Message"}
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                     </form>
                   </Form>
