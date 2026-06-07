@@ -1,8 +1,8 @@
 /**
  * Site content — update partner badges and client logos here.
  *
- * Client logos: drop PNG/SVG files into `public/clients/` then set `src`
- * (e.g. `/clients/acme.png`). Optional `href` links to the client's site.
+ * Client logos live in `public/clients/`. Set `src` to `/clients/<file>` and
+ * optional `href` to the client's website.
  */
 export type PartnerBadgeId =
   | "google"
@@ -27,9 +27,8 @@ export type PartnerBadge = {
 
 export type ClientLogo = {
   name: string;
-  /** Path under public/, e.g. `/clients/acme.png` — leave empty until you add the file */
-  src?: string;
-  href?: string;
+  src: string;
+  href: string;
 };
 
 export const PARTNER_BADGES: PartnerBadge[] = [
@@ -80,12 +79,86 @@ export const PARTNER_BADGES: PartnerBadge[] = [
   },
 ];
 
-/** Replace placeholders with your client names and logo paths when ready. */
 export const CLIENT_LOGOS: ClientLogo[] = [
-  { name: "Client 1" },
-  { name: "Client 2" },
-  { name: "Client 3" },
-  { name: "Client 4" },
-  { name: "Client 5" },
-  { name: "Client 6" },
+  {
+    name: "Remote Retrieval",
+    src: "/clients/remoteretrieval.png",
+    href: "https://www.remoteretrieval.com/",
+  },
+  {
+    name: "Bulk Devices",
+    src: "/clients/bulkdevices.png",
+    href: "https://bulkdevices.com/",
+  },
+  {
+    name: "Hummingbird International",
+    src: "/clients/hummingbirdinternational.png",
+    href: "https://hummingbirdinternational.net/",
+  },
+  {
+    name: "911 Geeks",
+    src: "/clients/911geeks.png",
+    href: "https://911geeks.com/",
+  },
+  {
+    name: "7 Star Portables",
+    src: "/clients/7starportables.png",
+    href: "https://7starportables.com.au/",
+  },
+  {
+    name: "Orange Burps",
+    src: "/clients/orangeburps.jpg",
+    href: "https://orangeburps.com/",
+  },
+  {
+    name: "Surf City Detail Garage",
+    src: "/clients/surfcitydetailgarage.png",
+    href: "https://surfcitydetailgarage.com/",
+  },
+  {
+    name: "Veranda Assisted Living",
+    src: "/clients/verandaassistedliving.jpg",
+    href: "https://verandaassistedliving.com/",
+  },
+  {
+    name: "Del Monte Village",
+    src: "/clients/delmontevillage.png",
+    href: "https://www.delmontevillage.com/",
+  },
+  {
+    name: "Sunrise Senior Living",
+    src: "/clients/sunriseseniorliving.png",
+    href: "https://www.sunriseseniorliving.com/",
+  },
+  {
+    name: "AZ Complete Repair",
+    src: "/clients/azcompleterepair.png",
+    href: "https://www.azcompleterepair.com/",
+  },
+  {
+    name: "Toplace",
+    src: "/clients/toplace.png",
+    href: "https://www.toplace.com/",
+  },
+  {
+    name: "Axcess Capital",
+    src: "/clients/axcesscapital.png",
+    href: "https://www.axcesscapital.com/",
+  },
+  {
+    name: "Zillion Designs",
+    src: "/clients/zilliondesigns.png",
+    href: "https://www.zilliondesigns.com/",
+  },
+  {
+    name: "Simplicity Marketing",
+    src: "/clients/simplicitymarketing.png",
+    href: "https://simplicitymarketingllc.com/",
+  },
 ];
+
+/** First row of the dual-line client carousel (8 brands). */
+export const CLIENT_LOGOS_ROW_ONE = CLIENT_LOGOS.slice(0, 8);
+
+/** Second row of the dual-line client carousel (7 brands). */
+export const CLIENT_LOGOS_ROW_TWO = CLIENT_LOGOS.slice(8);

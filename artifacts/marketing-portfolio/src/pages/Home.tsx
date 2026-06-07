@@ -60,7 +60,12 @@ import {
 } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 import { PartnerBadgeIcon } from "@/components/partner-badge-icon";
-import { CLIENT_LOGOS, PARTNER_BADGES } from "@/content/site-content";
+import { ClientLogoCarousel } from "@/components/client-logo-carousel";
+import {
+  CLIENT_LOGOS_ROW_ONE,
+  CLIENT_LOGOS_ROW_TWO,
+  PARTNER_BADGES,
+} from "@/content/site-content";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -1100,55 +1105,10 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={STAGGER}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6"
+            variants={FADE_UP}
+            className="-mx-6 md:-mx-0"
           >
-            {CLIENT_LOGOS.map((client, i) => {
-              const inner = (
-                <div
-                  className={`group relative flex h-24 md:h-28 items-center justify-center rounded-2xl border px-4 transition-all duration-300 ${
-                    client.src
-                      ? "border-white/8 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]"
-                      : "border-dashed border-white/15 bg-white/[0.02] hover:border-primary/30"
-                  }`}
-                >
-                  {client.src ? (
-                    <img
-                      src={client.src}
-                      alt={`${client.name} logo`}
-                      className="max-h-10 md:max-h-12 w-auto max-w-[85%] object-contain opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
-                    />
-                  ) : (
-                    <div className="text-center px-2">
-                      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-sm font-bold text-muted-foreground group-hover:text-primary group-hover:border-primary/30 transition-colors">
-                        {client.name.charAt(0)}
-                      </div>
-                      <span className="block text-[11px] font-medium text-muted-foreground/70 group-hover:text-muted-foreground transition-colors">
-                        {client.name}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              );
-
-              return (
-                <motion.div key={`${client.name}-${i}`} variants={FADE_UP}>
-                  {client.href ? (
-                    <a
-                      href={client.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                      aria-label={client.name}
-                    >
-                      {inner}
-                    </a>
-                  ) : (
-                    inner
-                  )}
-                </motion.div>
-              );
-            })}
+            <ClientLogoCarousel rowOne={CLIENT_LOGOS_ROW_ONE} rowTwo={CLIENT_LOGOS_ROW_TWO} />
           </motion.div>
         </div>
       </section>
