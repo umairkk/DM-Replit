@@ -59,6 +59,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
+import { PartnerBadgeIcon } from "@/components/partner-badge-icon";
 import { CLIENT_LOGOS, PARTNER_BADGES } from "@/content/site-content";
 
 const contactSchema = z.object({
@@ -486,10 +487,12 @@ export default function Home() {
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Check size={14} className={badge.accent} />
                 </div>
-                <div
-                  className={`w-11 h-11 rounded-xl bg-background/60 border border-white/10 flex items-center justify-center text-sm font-black mb-4 ${badge.accent}`}
-                >
-                  {badge.mark}
+                <div className="w-12 h-12 rounded-xl bg-background/60 border border-white/10 flex items-center justify-center mb-4">
+                  <PartnerBadgeIcon
+                    id={badge.id}
+                    color={badge.iconColor}
+                    className="w-7 h-7"
+                  />
                 </div>
                 <h3 className="text-sm font-bold leading-snug mb-1">{badge.name}</h3>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">{badge.subtitle}</p>
