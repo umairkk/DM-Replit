@@ -4,6 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import { SeoRoutePage } from "@/pages/SeoRoutePage";
+import { SEO_PAGES } from "@/content/seo-pages";
 
 const queryClient = new QueryClient();
 
@@ -11,6 +13,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      {Object.values(SEO_PAGES).map((page) => (
+        <Route key={page.path} path={page.path}>
+          <SeoRoutePage page={page} />
+        </Route>
+      ))}
       <Route component={NotFound} />
     </Switch>
   );

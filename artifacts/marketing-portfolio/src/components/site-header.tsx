@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import { Menu, Terminal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -42,14 +43,14 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
-          <div className="font-bold text-lg md:text-xl tracking-tight flex items-center gap-2 min-w-0">
+          <Link href="/" className="font-bold text-lg md:text-xl tracking-tight flex items-center gap-2 min-w-0 hover:opacity-90 transition-opacity">
             <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center border border-primary/50 text-primary shrink-0">
               <Terminal size={18} />
             </div>
             <span className="truncate">
               Umair A<span className="text-primary">.</span>
             </span>
-          </div>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-muted-foreground">
             {NAV_LINKS.map((link) => (
