@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { Menu, Terminal, X } from "lucide-react";
+import { ChevronDown, Menu, Terminal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SERVICE_NAV_LINKS } from "@/content/seo-pages";
 
 const NAV_LINKS = [
   { label: "Results", id: "results" },
-  { label: "Services", id: "services" },
   { label: "Case Studies", id: "casestudies" },
   { label: "About", id: "about" },
   { label: "Free Audit", id: "audit" },
@@ -20,6 +20,9 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -28,9 +31,26 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onPointerDown = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, [servicesOpen]);
+
   const handleNavigate = (id: string) => {
     setMobileOpen(false);
+    setMobileServicesOpen(false);
     onNavigate(id);
+  };
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileServicesOpen(false);
   };
 
   return (
@@ -53,7 +73,61 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-muted-foreground">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.slice(0, 1).map((link) => (
+              <button
+                key={link.id}
+                type="button"
+                onClick={() => handleNavigate(link.id)}
+                className="hover:text-foreground transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </button>
+            ))}
+
+            {/* Services dropdown */}
+            <div ref={servicesRef} className="relative">
+              <button
+                type="button"
+                aria-expanded={servicesOpen}
+                aria-haspopup="true"
+                onClick={() => setServicesOpen((open) => !open)}
+                className="inline-flex items-center gap-1 hover:text-foreground transition-colors whitespace-nowrap"
+              >
+                Services
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              {servicesOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[280px]">
+                  <div className="rounded-xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-xl py-2 overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setServicesOpen(false);
+                        handleNavigate("services");
+                      }}
+                      className="w-full px-4 py-2.5 text-left text-sm font-semibold text-primary hover:bg-primary/10 transition-colors border-b border-white/5"
+                    >
+                      All Services Overview
+                    </button>
+                    {SERVICE_NAV_LINKS.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setServicesOpen(false)}
+                        className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {NAV_LINKS.slice(1).map((link) => (
               <button
                 key={link.id}
                 type="button"
@@ -92,7 +166,7 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
             type="button"
             aria-label="Close menu overlay"
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-            onClick={() => setMobileOpen(false)}
+            onClick={closeMobile}
           />
           <nav className="absolute top-16 left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-white/10 bg-background/95 backdrop-blur-xl px-4 py-4 shadow-xl">
             <div className="grid grid-cols-2 gap-2">
@@ -106,6 +180,44 @@ export function SiteHeader({ scrolled, onNavigate }: SiteHeaderProps) {
                   {link.label}
                 </button>
               ))}
+
+              {/* Mobile services accordion */}
+              <div className="col-span-2 rounded-xl border border-white/8 bg-white/[0.03] overflow-hidden">
+                <button
+                  type="button"
+                  aria-expanded={mobileServicesOpen}
+                  onClick={() => setMobileServicesOpen((open) => !open)}
+                  className="w-full flex items-center justify-between px-3 py-3 text-sm font-medium text-foreground hover:bg-primary/5 transition-colors"
+                >
+                  Services
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileServicesOpen && (
+                  <div className="border-t border-white/8 px-2 py-2 space-y-0.5">
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate("services")}
+                      className="w-full text-left px-2 py-2 text-xs font-semibold text-primary rounded-lg hover:bg-primary/10 transition-colors"
+                    >
+                      All Services Overview
+                    </button>
+                    {SERVICE_NAV_LINKS.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMobile}
+                        className="block px-2 py-2 text-xs text-muted-foreground rounded-lg hover:text-foreground hover:bg-white/5 transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <button
                 type="button"
                 onClick={() => handleNavigate("schedule")}

@@ -21,6 +21,12 @@ export const SEO_PAGES: Record<SeoPageSlug, SeoPageContent> = {
 
 export const SEO_PAGE_PATHS = Object.values(SEO_PAGES).map((p) => p.path);
 
+/** Header / nav links for SEO service landing pages */
+export const SERVICE_NAV_LINKS = Object.values(SEO_PAGES).map((p) => ({
+  href: p.path,
+  label: p.badge,
+}));
+
 export function getSeoPageByPath(path: string): SeoPageContent | undefined {
   return Object.values(SEO_PAGES).find((p) => p.path === path);
 }
