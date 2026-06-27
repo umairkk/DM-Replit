@@ -1,6 +1,6 @@
 [build]
   command = "pnpm install && pnpm run typecheck:libs && pnpm --filter @workspace/marketing-portfolio run build"
-  publish = "artifacts/marketing-portfolio/dist/public"
+  publish = "dist/public"
 
 [build.environment]
   BASE_PATH = "/"
