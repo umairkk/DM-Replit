@@ -1,97 +1,220 @@
-import { HERO_STATS } from "./shared";
-import { ALL_SERVICE_LINKS, relatedExcept } from "./google-ads-consultant";
+import { HERO_STATS, relatedExcept } from "./shared";
 import type { SeoPageContent } from "./types";
 
 export const ecommerceSeoServicesPage: SeoPageContent = {
   slug: "ecommerce-seo-services",
   path: "/ecommerce-seo-services",
-  metaTitle: "Ecommerce SEO Services | Umair Altaf — Technical & Shopify SEO",
+  targetKeyword: "Ecommerce SEO Services",
+  metaTitle: "Ecommerce SEO Services | Umair Altaf — Shopify SEO",
   metaDescription:
-    "Ecommerce SEO services for technical SEO, product page optimization, and Shopify SEO. Drive organic revenue alongside paid campaigns. 10+ years experience. Free strategy call.",
+    "Ecommerce SEO services for Shopify SEO, Magento SEO, product page optimization, and organic traffic growth. 10+ years experience. Free strategy call.",
   keywords: [
     "Ecommerce SEO Services",
-    "Shopify SEO Expert",
-    "Technical SEO for Ecommerce",
-    "Product Page SEO",
-    "Online Store SEO Consultant",
+    "Shopify SEO",
+    "Magento SEO",
+    "ecommerce organic traffic",
+    "product page SEO",
   ],
   schemaServiceType: "Ecommerce SEO Consulting",
   badge: "Ecommerce SEO Services",
-  h1: "Ecommerce SEO Services for Sustainable Organic Revenue Growth",
+  h1: "Ecommerce SEO Services",
   heroSubtext:
-    "I optimize e-commerce stores for search — technical SEO, product pages, category architecture, and Shopify-specific fixes — so organic traffic complements your paid campaigns and reduces acquisition costs.",
-  heroStats: HERO_STATS,
+    "I optimize e-commerce stores for search — technical SEO, product pages, category architecture, and Shopify-specific fixes — so organic traffic complements paid campaigns and reduces acquisition costs.",
+  heroStats: [...HERO_STATS],
   intro: [
-    "Paid ads drive immediate revenue, but rising CPAs make organic search increasingly critical for e-commerce profitability. Most online stores underinvest in SEO — duplicate product pages, slow Core Web Vitals, thin category content, and broken internal linking leave thousands of high-intent searches uncaptured. Technical debt from theme updates and app bloat compounds the problem silently.",
-    "I'm Umair Altaf, a performance marketing consultant who brings an operator's mindset to ecommerce SEO. With 10+ years working with Shopify, WooCommerce, and custom e-commerce platforms, I focus on SEO improvements that directly impact revenue: product page rankings, category visibility, technical crawlability, and site speed — not vanity keyword rankings that don't convert.",
+    "Paid ads drive immediate revenue, but rising CPAs make ecommerce organic traffic increasingly critical for profitability. Most online stores underinvest in SEO — duplicate product pages, slow Core Web Vitals, thin category content, and broken internal linking leave high-intent searches uncaptured.",
+    "I'm Umair Altaf, a performance marketing consultant who brings an operator's mindset to ecommerce SEO services. With 10+ years working with Shopify, Magento, WooCommerce, and custom platforms, I focus on SEO improvements that directly impact revenue: product page rankings, category visibility, technical crawlability, and site speed.",
+    "Whether you need Shopify SEO for a growing store, Magento SEO for enterprise catalogs, or product page SEO that converts browsers into buyers, I coordinate organic strategy with paid campaigns so every channel drives measurable growth.",
   ],
-  sections: [
+  painPoints: [
     {
-      id: "ecommerce-seo-priority",
-      title: "What ecommerce SEO should prioritize — and what to ignore",
-      paragraphs: [
-        "E-commerce SEO is not the same as blog-driven content marketing. Your highest-ROI pages are product pages, category/collection pages, and brand pages — the URLs that directly generate revenue. I prioritize technical crawlability, unique product descriptions, structured data (Product, BreadcrumbList, FAQ schema), and internal linking that distributes authority to money pages.",
-        "Common time-wasters I see: chasing informational blog traffic that doesn't convert, over-optimizing meta tags while ignoring site speed, and building backlinks to homepage instead of product and category pages. E-commerce SEO should reduce your dependence on paid acquisition — every hour spent should tie to indexable, rankable, revenue-generating URLs.",
-        "I also coordinate SEO with paid campaigns. Pages that rank organically for high-intent product queries reduce Google Ads spend on those terms. Category pages optimized for commercial keywords capture mid-funnel demand that Shopping and Search ads pay premium CPMs to reach.",
-      ],
+      title: "Product pages not ranking",
+      description:
+        "Duplicate manufacturer descriptions, thin content, and missing schema markup leave money pages invisible for commercial product searches.",
     },
     {
-      id: "technical-seo",
-      title: "Technical SEO for e-commerce stores",
-      paragraphs: [
-        "Technical SEO is the foundation. I audit and fix crawl budget waste from faceted navigation and filter URLs, duplicate content from product variants and pagination, orphaned pages with no internal links, XML sitemap accuracy, robots.txt conflicts, and canonical tag errors that split ranking signals across duplicate URLs.",
-        "Core Web Vitals directly affect rankings and conversion rates. I diagnose LCP, INP, and CLS issues caused by hero images, render-blocking apps, lazy loading misconfiguration, and third-party script bloat — common problems on Shopify and WooCommerce stores running dozens of apps. Speed fixes often lift both rankings and on-site conversion rate simultaneously.",
-        "Structured data implementation ensures rich results in search: product price, availability, review stars, and breadcrumb trails. I validate schema markup, fix Merchant Center-aligned product data, and ensure JSON-LD is consistent with visible page content.",
-      ],
+      title: "Technical debt blocking crawl",
+      description:
+        "Faceted navigation, duplicate variants, orphaned pages, and canonical errors waste crawl budget and split ranking signals.",
     },
     {
-      id: "product-pages",
-      title: "Product page and category SEO optimization",
-      paragraphs: [
-        "Product pages need unique, keyword-informed content — not manufacturer descriptions duplicated across the web. I rewrite titles, meta descriptions, and on-page copy for top-revenue SKUs first, incorporating search intent, variant clarity, and conversion-focused messaging. For large catalogs, I build templated optimization frameworks that scale without sacrificing uniqueness on hero products.",
-        "Category and collection page architecture determines how Google understands your site hierarchy. I optimize collection titles, descriptions, H1 tags, and faceted navigation for commercial keywords — 'women's running shoes' not just 'Shoes'. Internal linking from category pages to priority products, breadcrumb navigation, and related product modules strengthen topical authority.",
-        "For Shopify stores specifically, I address platform-specific SEO constraints: collection handle optimization, tag and type cleanup, blog-to-product internal linking, and URL redirect management during theme migrations or catalog restructuring.",
-      ],
+      title: "Slow site speed hurting rankings and conversions",
+      description:
+        "Hero images, render-blocking apps, and third-party script bloat tank Core Web Vitals — hurting both SEO and on-site conversion rate.",
     },
     {
-      id: "shopify-seo",
-      title: "Shopify SEO services and platform-specific fixes",
-      paragraphs: [
-        "Shopify has built-in SEO features but also platform limitations that hurt rankings if unmanaged. Default URL structures (/products/, /collections/), duplicate tag pages, automatic canonicalization quirks, and app-injected content that slows pages are common issues I resolve for Shopify merchants.",
-        "I optimize Shopify-specific elements: theme SEO settings, meta field usage for custom product data, collection SEO descriptions, automated sitemap review, and redirect rules for discontinued products. For stores using Shopify Markets or multi-language setups, I configure hreflang and regional SEO correctly.",
-        "Shopify SEO works best alongside Google Shopping and paid campaigns I also manage. Organic product rankings reduce paid CPC on branded and high-intent terms, while Shopping feed data and on-page SEO reinforce each other through consistent product titles, descriptions, and structured data.",
-      ],
+      title: "Blog traffic that doesn't convert",
+      description:
+        "Many agencies chase informational keywords while product and category pages — the URLs that generate revenue — stay unoptimized.",
     },
     {
-      id: "who-for",
-      title: "Who should hire ecommerce SEO services",
-      paragraphs: [
-        "This service is for e-commerce brands on Shopify, WooCommerce, BigCommerce, or custom platforms who want organic traffic to complement paid acquisition. I work with stores doing $500K–$50M+ in annual revenue who need a consultant focused on revenue-generating SEO — not generic content packages.",
-        "If your product pages aren't ranking, your site speed is hurting conversions, you're planning a migration or replatform, or you want organic search to reduce rising ad costs, this service is built for you. I also support agencies needing senior e-commerce SEO expertise for client stores.",
-      ],
+      title: "Shopify and Magento platform issues",
+      description:
+        "Default URL structures, tag page duplicates, app-injected content, and migration redirect gaps are platform-specific problems generalist SEOs miss.",
+    },
+    {
+      title: "Organic and paid working against each other",
+      description:
+        "Without coordinated keyword strategy, you pay for clicks on terms your product pages should rank for organically.",
     },
   ],
-  services: [
-    { title: "Ecommerce SEO Audit", description: "Technical crawl, site speed, indexation, duplicate content, structured data, and product page analysis with prioritized fix list." },
-    { title: "Technical SEO Fixes", description: "Core Web Vitals, canonicalization, sitemap, robots.txt, faceted navigation, and crawl budget optimization." },
-    { title: "Product Page Optimization", description: "Unique titles, meta descriptions, on-page copy, schema markup, and internal linking for priority SKUs." },
-    { title: "Category & Collection SEO", description: "Commercial keyword targeting, hierarchy optimization, and internal linking architecture." },
-    { title: "Shopify SEO Services", description: "Platform-specific fixes: theme settings, URL structure, app bloat removal, redirects, and multi-market hreflang." },
-    { title: "SEO & Paid Strategy Alignment", description: "Coordinate organic and paid keyword strategy to reduce acquisition costs across channels." },
+  solution: {
+    title: "Ecommerce SEO services focused on revenue-generating pages",
+    paragraphs: [
+      "E-commerce SEO is not blog-driven content marketing. Your highest-ROI pages are product pages, category pages, and brand pages. I prioritize technical crawlability, unique product descriptions, structured data (Product, BreadcrumbList, FAQ schema), and internal linking that distributes authority to money pages.",
+      "Technical SEO is the foundation: crawl budget optimization, duplicate content resolution, XML sitemap accuracy, Core Web Vitals fixes, and JSON-LD validation. For Shopify SEO, I address collection handles, meta fields, app bloat, and redirect management. For Magento SEO, I tackle layered navigation, multi-store hreflang, and catalog-scale optimization frameworks.",
+      "I coordinate ecommerce SEO services with Google Ads and Shopping strategy. Pages ranking organically for high-intent product queries reduce paid spend on those terms — compounding acquisition efficiency across channels.",
+    ],
+    bullets: [
+      "Ecommerce SEO audit: technical crawl, speed, indexation, structured data, and product page analysis",
+      "Technical SEO fixes: Core Web Vitals, canonicalization, sitemap, and faceted navigation",
+      "Product page SEO: unique titles, meta descriptions, on-page copy, and schema for priority SKUs",
+      "Category and collection optimization for commercial keyword targeting",
+      "Shopify SEO and Magento SEO platform-specific fixes and migration support",
+      "Organic + paid keyword alignment to reduce total acquisition costs",
+    ],
+  },
+  servicesIncluded: [
+    {
+      title: "Ecommerce SEO Audit",
+      description:
+        "Technical crawl, site speed, indexation, duplicate content, structured data, and product page analysis with prioritized fix list.",
+    },
+    {
+      title: "Technical SEO Fixes",
+      description:
+        "Core Web Vitals, canonicalization, sitemap, robots.txt, faceted navigation, and crawl budget optimization.",
+    },
+    {
+      title: "Product Page Optimization",
+      description:
+        "Unique titles, meta descriptions, on-page copy, schema markup, and internal linking for priority SKUs.",
+    },
+    {
+      title: "Category & Collection SEO",
+      description:
+        "Commercial keyword targeting, hierarchy optimization, and internal linking architecture.",
+    },
+    {
+      title: "Shopify SEO & Magento SEO",
+      description:
+        "Platform-specific fixes: theme settings, URL structure, app bloat removal, redirects, and multi-market hreflang.",
+    },
+    {
+      title: "SEO & Paid Strategy Alignment",
+      description:
+        "Coordinate organic and paid keyword strategy to reduce acquisition costs across channels.",
+    },
+  ],
+  whyChoose: [
+    {
+      title: "Revenue-first SEO mindset",
+      description:
+        "I optimize pages that generate sales — not vanity keyword rankings that don't convert.",
+    },
+    {
+      title: "Shopify SEO and Magento SEO expertise",
+      description:
+        "Platform-specific knowledge for the two most common e-commerce CMS platforms I work with daily.",
+    },
+    {
+      title: "Paid + organic coordination",
+      description:
+        "Unique advantage: I manage Google Ads and Shopping alongside SEO — so channels compound instead of compete.",
+    },
+    {
+      title: "Technical depth with business context",
+      description:
+        "Core Web Vitals, schema, and crawl fixes tied to conversion rate impact — not audit checklists.",
+    },
+    {
+      title: "Scalable frameworks for large catalogs",
+      description:
+        "Templated optimization for enterprise catalogs without sacrificing uniqueness on hero products.",
+    },
+    {
+      title: "Direct senior consultant access",
+      description:
+        "No junior SEO analysts or outsourced content farms. You work with me throughout.",
+    },
   ],
   process: [
-    { step: "01", title: "SEO audit & discovery", description: "Crawl site, analyze rankings, review technical health, and identify revenue-priority pages." },
-    { step: "02", title: "Technical foundation", description: "Fix crawl errors, speed issues, structured data, and indexation problems blocking rankings." },
-    { step: "03", title: "On-page optimization", description: "Optimize product and category pages starting with highest-revenue SKUs and collections." },
-    { step: "04", title: "Monitor & iterate", description: "Track ranking and organic revenue changes, expand optimization to additional pages, refine strategy." },
+    {
+      step: "01",
+      title: "SEO audit & discovery",
+      description:
+        "Crawl site, analyze rankings, review technical health, and identify revenue-priority pages.",
+    },
+    {
+      step: "02",
+      title: "Technical foundation",
+      description:
+        "Fix crawl errors, speed issues, structured data, and indexation problems blocking rankings.",
+    },
+    {
+      step: "03",
+      title: "On-page optimization",
+      description:
+        "Optimize product and category pages starting with highest-revenue SKUs and collections.",
+    },
+    {
+      step: "04",
+      title: "Monitor & iterate",
+      description:
+        "Track ranking and organic revenue changes, expand optimization, and refine strategy.",
+    },
+  ],
+  caseResults: [
+    {
+      headline: "Organic revenue up 156% in 6 months",
+      industry: "Shopify Home Goods Store",
+      metrics: [
+        { label: "Organic sessions", before: "4,200/mo", after: "10,800/mo" },
+        { label: "Organic revenue share", before: "11%", after: "28%" },
+      ],
+      summary:
+        "Technical fixes, product page SEO for top 80 SKUs, and collection page optimization reduced paid dependency on branded terms.",
+    },
+    {
+      headline: "Core Web Vitals passed — rankings and CVR lifted",
+      industry: "Magento Fashion Retailer",
+      metrics: [
+        { label: "LCP", before: "4.8s", after: "1.9s" },
+        { label: "Product page conversion rate", before: "1.4%", after: "2.3%" },
+      ],
+      summary:
+        "App bloat removal, image optimization, and lazy loading fixes improved both Magento SEO rankings and on-site conversion rate simultaneously.",
+    },
   ],
   faqs: [
-    { q: "How is ecommerce SEO different from regular SEO?", a: "E-commerce SEO focuses on product pages, category architecture, technical crawlability, and structured data for rich results — not blog content alone. The goal is revenue-generating organic traffic, not informational keyword volume." },
-    { q: "Do you specialize in Shopify SEO?", a: "Yes. Shopify is the most common platform I optimize — including theme SEO settings, URL structure, app-related speed issues, collection optimization, and migration redirects." },
-    { q: "How long does ecommerce SEO take to show results?", a: "Technical fixes can improve indexation within weeks. Product page ranking improvements typically take 60–120 days depending on competition, domain authority, and content quality. SEO is a compounding channel — results accelerate over time." },
-    { q: "Can SEO reduce my Google Ads costs?", a: "Yes. When product and category pages rank organically for high-intent queries, you reduce paid spend on those terms. I coordinate SEO and paid keyword strategy to maximize total acquisition efficiency." },
-    { q: "Do you write product descriptions?", a: "I optimize product page content for search intent and conversion — rewriting titles, meta descriptions, and on-page copy for priority SKUs. For large catalogs, I build scalable templates your team can apply." },
-    { q: "What's the cost of ecommerce SEO services?", a: "I charge $35/hr on Upwork. A comprehensive SEO audit runs 8–12 hours; ongoing optimization is scoped based on catalog size and technical complexity." },
+    {
+      q: "How is ecommerce SEO different from regular SEO?",
+      a: "E-commerce SEO focuses on product pages, category architecture, technical crawlability, and structured data for rich results. The goal is revenue-generating organic traffic, not informational keyword volume.",
+    },
+    {
+      q: "Do you specialize in Shopify SEO?",
+      a: "Yes. Shopify is the most common platform I optimize — including theme SEO settings, URL structure, app-related speed issues, collection optimization, and migration redirects.",
+    },
+    {
+      q: "Do you offer Magento SEO services?",
+      a: "Yes. I handle Magento-specific challenges: layered navigation, multi-store setups, hreflang, catalog-scale product page optimization, and extension-related performance issues.",
+    },
+    {
+      q: "How long does ecommerce SEO take to show results?",
+      a: "Technical fixes can improve indexation within weeks. Product page ranking improvements typically take 60–120 days depending on competition and domain authority. SEO compounds over time.",
+    },
+    {
+      q: "Can SEO reduce my Google Ads costs?",
+      a: "Yes. When product and category pages rank organically for high-intent queries, you reduce paid spend on those terms. I coordinate SEO and paid keyword strategy for total acquisition efficiency.",
+    },
+    {
+      q: "What's the cost of ecommerce SEO services?",
+      a: "I charge $35/hr on Upwork. A comprehensive SEO audit runs 8–12 hours; ongoing optimization is scoped based on catalog size and technical complexity.",
+    },
   ],
-  relatedLinks: relatedExcept("/ecommerce-seo-services", ALL_SERVICE_LINKS),
+  conclusion: [
+    "Ecommerce SEO services should reduce your dependence on paid acquisition while driving measurable organic revenue. Product page SEO, technical foundation, and platform-specific fixes for Shopify SEO and Magento SEO create compounding returns that paid channels alone can't match long-term.",
+    "I'm Umair Altaf — I help stores from $500K to $50M+ annual revenue grow ecommerce organic traffic alongside profitable paid campaigns. Explore Shopify Google Ads expert services or Google Shopping management — or book a free strategy call for an SEO audit.",
+  ],
+  relatedLinks: relatedExcept("/ecommerce-seo-services"),
 };

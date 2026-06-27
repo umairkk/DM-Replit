@@ -32,3 +32,4 @@ export function getSeoPageByPath(path: string): SeoPageContent | undefined {
 }
 
 export * from "./types";
+export { ALL_SERVICE_LINKS, relatedExcept } from "./shared";

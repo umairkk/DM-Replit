@@ -1,97 +1,220 @@
-import { HERO_STATS } from "./shared";
-import { ALL_SERVICE_LINKS, relatedExcept } from "./google-ads-consultant";
+import { HERO_STATS, relatedExcept } from "./shared";
 import type { SeoPageContent } from "./types";
 
 export const shopifyGoogleAdsExpertPage: SeoPageContent = {
   slug: "shopify-google-ads-expert",
   path: "/shopify-google-ads-expert",
-  metaTitle: "Shopify Google Ads Expert | Umair Altaf — Shopping & PMax for Shopify",
+  targetKeyword: "Shopify Google Ads Expert",
+  metaTitle: "Shopify Google Ads Expert | Umair Altaf — Shopping & PMax",
   metaDescription:
-    "Shopify Google Ads expert for Shopping campaigns, Performance Max, conversion tracking, and feed integration. Scale your Shopify store with profitable PPC. Book a free strategy call.",
+    "Shopify Google Ads expert for Shopping, Performance Max, feed integration, and conversion tracking. Scale your Shopify store with profitable PPC. Free strategy call.",
   keywords: [
     "Shopify Google Ads Expert",
-    "Google Ads for Shopify",
-    "Shopify Shopping Ads",
+    "Shopify ads expert",
+    "Shopify Google Shopping",
     "Shopify Performance Max",
-    "Shopify PPC Management",
+    "ecommerce PPC",
   ],
   schemaServiceType: "Shopify Google Ads Management",
   badge: "Shopify Google Ads Expert",
-  h1: "Shopify Google Ads Expert for Shopping, PMax & Revenue Scaling",
+  h1: "Shopify Google Ads Expert",
   heroSubtext:
     "I connect Shopify stores to profitable Google Ads campaigns — with clean feed integration, accurate conversion tracking, and Shopping or Performance Max strategies built for e-commerce ROAS.",
-  heroStats: HERO_STATS,
+  heroStats: [...HERO_STATS],
   intro: [
-    "Shopify makes launching a store easy — but connecting it to profitable Google Ads is where most merchants struggle. The Google & YouTube app syncs products, yet feed errors, conversion tracking gaps, and generic campaign structures leave Shopify stores spending without scalable returns. Performance Max defaults absorb budget; Shopping feeds disapprove silently; and GA4 purchase events often don't match Shopify order data.",
-    "I'm Umair Altaf, a Shopify Google Ads expert with 10+ years managing PPC for e-commerce brands. I've scaled Shopify stores across fashion, home goods, beauty, and DTC niches — handling everything from Google & YouTube app setup and Merchant Center feed optimization to Performance Max asset groups and Shopify-specific conversion tracking through GTM and enhanced conversions.",
+    "Shopify makes launching a store easy — but connecting it to profitable Google Ads is where most merchants struggle. Feed errors, conversion tracking gaps, and generic campaign structures leave Shopify stores spending without scalable returns. Performance Max defaults absorb budget while GA4 purchase events don't match Shopify order data.",
+    "I'm Umair Altaf, a Shopify Google Ads expert and Shopify ads expert with 10+ years managing ecommerce PPC for DTC brands. I handle Google & YouTube app setup, Merchant Center feed optimization, Shopify Google Shopping campaigns, Shopify Performance Max asset groups, and GTM-based conversion tracking with enhanced conversions.",
+    "Whether you're launching a new store or scaling an existing one, I bring platform-specific integration knowledge that generalist PPC managers often lack — so every dollar of ecommerce PPC drives measurable Shopify revenue.",
   ],
-  sections: [
+  painPoints: [
     {
-      id: "shopify-integration",
-      title: "Shopify and Google Ads integration done right",
-      paragraphs: [
-        "The Shopify Google & YouTube app is the starting point — not the finish line. I configure the app correctly: product sync settings, automatic mark-up handling, variant grouping, and supplemental feed data for custom labels that enable margin-tier campaign segmentation. Many Shopify stores run with default settings that push incomplete product data and miss custom label opportunities entirely.",
-        "Merchant Center connection requires more than clicking 'connect.' Shipping settings, return policies, business information, and tax configuration must align with your Shopify store's actual checkout experience. Mismatches here cause disapprovals and suspensions — especially for stores shipping internationally or offering complex shipping rules through Shopify apps.",
-        "For stores using third-party feed apps (Feedonomics, DataFeedWatch, Mulberry) or custom API feeds, I audit the entire pipeline to ensure Shopify inventory changes, sale prices, and product updates sync accurately to Merchant Center within acceptable latency.",
-      ],
+      title: "Google & YouTube app misconfiguration",
+      description:
+        "Default sync settings push incomplete product data and miss custom label opportunities for margin-tier campaign segmentation.",
     },
     {
-      id: "shopify-tracking",
-      title: "Conversion tracking for Shopify Google Ads campaigns",
-      paragraphs: [
-        "Accurate conversion tracking is the biggest technical gap in Shopify Google Ads accounts. The native Google & YouTube app tracks some events, but I implement comprehensive tracking through Google Tag Manager: purchase events with dynamic transaction values, add-to-cart, begin checkout, and enhanced conversions with hashed customer data for improved Smart Bidding match rates.",
-        "Shopify's checkout extensibility (Shopify Checkout vs. third-party checkouts) affects tracking implementation. I configure GTM containers for standard Shopify checkout, Shop Pay, and common third-party checkout apps — ensuring conversion data flows reliably regardless of payment method.",
-        "I reconcile Google Ads conversion data with Shopify order reports weekly. Discrepancies between platform-reported ROAS and actual Shopify revenue indicate tracking issues that must be fixed before scaling — I treat this reconciliation as non-negotiable.",
-      ],
+      title: "Conversion tracking doesn't match Shopify orders",
+      description:
+        "Native app tracking misses purchases, undervalues transactions, and breaks with Shop Pay or third-party checkouts — corrupting Smart Bidding.",
     },
     {
-      id: "shopify-shopping",
-      title: "Google Shopping campaigns for Shopify stores",
-      paragraphs: [
-        "Shopping is the highest-ROI Google Ads channel for most Shopify stores — when feeds and campaigns are configured properly. I build margin-segmented Shopping structures using custom labels pushed from Shopify: hero products, clearance, new arrivals, and high-margin tiers each get appropriate bidding strategies and budget allocation.",
-        "Product title optimization in Shopify directly impacts Shopping query matching. I rewrite titles for top SKUs with front-loaded keywords, variant clarity (size, color, material), and brand positioning — changes that propagate to Merchant Center through the feed sync.",
-        "For Shopify stores with large catalogs (1,000+ SKUs), I implement feed rules and supplemental feeds to manage complexity: exclude out-of-stock variants automatically, override titles for top performers, and apply promotional labels during sale events without manual SKU-by-SKU edits.",
-      ],
+      title: "Merchant Center disapprovals and suspensions",
+      description:
+        "Shipping, return policy, and price mismatches between Shopify checkout and GMC trigger disapprovals that block Shopify Google Shopping ads.",
     },
     {
-      id: "shopify-pmax",
-      title: "Performance Max for Shopify e-commerce",
-      paragraphs: [
-        "Performance Max is Google's recommended campaign type for Shopify stores — but default PMax setups often underperform. I build PMax campaigns with multiple asset groups tied to product categories or margin tiers, audience signals from Shopify customer lists and cart abandoners, and listing group filters that prevent low-margin products from consuming budget.",
-        "Brand exclusion strategy protects Shopify stores running branded Search campaigns alongside PMax. Without it, PMax captures branded queries at higher CPAs — inflating reported ROAS while raising total acquisition cost. I implement brand restrictions and account-level negative keyword strategies specific to Shopify store brand names and product names.",
-        "Shopify-specific PMax creative uses product photography, lifestyle images, and UGC from your store's social presence. I configure asset groups with Shopify product feed images supplemented by uploaded creative — giving Google's automation enough variety to test across Search, Shopping, Display, YouTube, and Discover placements.",
-      ],
+      title: "Flat ROAS on Shopify Performance Max",
+      description:
+        "Catch-all PMax campaigns with no asset group segmentation or brand exclusions inflate reported ROAS while total acquisition cost rises.",
     },
     {
-      id: "who-for",
-      title: "Who should hire a Shopify Google Ads expert",
-      paragraphs: [
-        "This service is for Shopify store owners and DTC brands spending $3K–$100K+ per month on Google Ads who need platform-specific expertise. Whether you're on Shopify Basic or Shopify Plus, running a single storefront or multiple markets, I bring the integration knowledge that generalist PPC managers often lack.",
-        "If your Shopify Google Ads ROAS is flat, your Merchant Center feed has persistent errors, conversion tracking doesn't match Shopify orders, or you're launching a new store and want Google Ads set up correctly from day one, this service is built for you.",
-      ],
+      title: "Product titles not optimized for Shopping",
+      description:
+        "Generic Shopify product titles propagate to Merchant Center — limiting query matching and leaving high-intent searches to competitors.",
+    },
+    {
+      title: "No reconciliation with Shopify revenue",
+      description:
+        "Platform-reported ROAS that doesn't match Shopify admin revenue indicates tracking issues that must be fixed before scaling ecommerce PPC.",
     },
   ],
-  services: [
-    { title: "Shopify Google Ads Audit", description: "Google & YouTube app config, feed health, conversion tracking, campaign structure, and Shopify order reconciliation." },
-    { title: "Merchant Center & Feed Setup", description: "Product sync optimization, custom labels, shipping settings, and disapproval resolution for Shopify feeds." },
-    { title: "Shopify Conversion Tracking", description: "GTM implementation for purchase, add-to-cart, and enhanced conversions aligned with Shopify checkout." },
-    { title: "Shopping Campaign Management", description: "Margin-segmented Shopping campaigns with product title optimization and listing-level ROAS tuning." },
-    { title: "Performance Max for Shopify", description: "Asset groups, audience signals from Shopify customer data, listing filters, and brand exclusion strategy." },
-    { title: "Shopify Search & Retargeting", description: "Branded and non-branded Search campaigns plus Dynamic Remarketing tied to Shopify product feeds." },
+  solution: {
+    title: "Shopify Google Ads expert integration: feed, tracking, and campaigns unified",
+    paragraphs: [
+      "I configure the Shopify Google & YouTube app correctly: product sync settings, variant grouping, supplemental feed data for custom labels, and Merchant Center shipping and policy alignment with your actual checkout experience. For third-party feed apps, I audit the entire pipeline for inventory and price sync accuracy.",
+      "Conversion tracking goes through Google Tag Manager: purchase events with dynamic transaction values, add-to-cart, begin checkout, and enhanced conversions with hashed customer data. I reconcile Google Ads data with Shopify order reports weekly — treating discrepancies as non-negotiable fixes before scaling.",
+      "Campaign strategy combines Shopify Google Shopping for margin-segmented control and Shopify Performance Max for incremental reach — with asset groups tied to product categories, audience signals from Shopify customer lists, and brand exclusions protecting branded Search campaigns.",
+    ],
+    bullets: [
+      "Shopify Google Ads audit: app config, feed health, tracking, and Shopify order reconciliation",
+      "Merchant Center setup with custom labels, shipping settings, and disapproval resolution",
+      "GTM conversion tracking for purchase, add-to-cart, and enhanced conversions on Shopify checkout",
+      "Shopify Google Shopping campaigns with margin segmentation and title optimization",
+      "Shopify Performance Max with asset groups, customer list signals, and brand exclusions",
+      "Search, retargeting, and Dynamic Remarketing tied to Shopify product feeds",
+    ],
+  },
+  servicesIncluded: [
+    {
+      title: "Shopify Google Ads Audit",
+      description:
+        "Google & YouTube app config, feed health, conversion tracking, campaign structure, and Shopify order reconciliation.",
+    },
+    {
+      title: "Merchant Center & Feed Setup",
+      description:
+        "Product sync optimization, custom labels, shipping settings, and disapproval resolution for Shopify feeds.",
+    },
+    {
+      title: "Shopify Conversion Tracking",
+      description:
+        "GTM implementation for purchase, add-to-cart, and enhanced conversions aligned with Shopify checkout.",
+    },
+    {
+      title: "Shopify Google Shopping Management",
+      description:
+        "Margin-segmented Shopping campaigns with product title optimization and listing-level ROAS tuning.",
+    },
+    {
+      title: "Shopify Performance Max",
+      description:
+        "Asset groups, audience signals from Shopify customer data, listing filters, and brand exclusion strategy.",
+    },
+    {
+      title: "Shopify Search & Retargeting",
+      description:
+        "Branded and non-branded Search campaigns plus Dynamic Remarketing tied to Shopify product feeds.",
+    },
+  ],
+  whyChoose: [
+    {
+      title: "Shopify-native integration expertise",
+      description:
+        "Google & YouTube app, GTM checkout tracking, Shop Pay, and third-party checkout configurations — daily workflows.",
+    },
+    {
+      title: "Feed + tracking + campaigns unified",
+      description:
+        "Most PPC managers fix one layer. I connect Merchant Center, conversion tracking, and bidding holistically.",
+    },
+    {
+      title: "$50M+ ecommerce revenue generated",
+      description:
+        "Proven Shopify Google Ads results across fashion, home goods, beauty, and DTC verticals.",
+    },
+    {
+      title: "Shopify order reconciliation standard",
+      description:
+        "Weekly validation that platform ROAS matches actual Shopify revenue — not inflated platform reporting.",
+    },
+    {
+      title: "Shopping + PMax + Search coordination",
+      description:
+        "Full ecommerce PPC strategy — not isolated campaign types managed independently.",
+    },
+    {
+      title: "Shopify Plus and multi-market experience",
+      description:
+        "All Shopify plans including Plus with B2B, international markets, and multi-store configurations.",
+    },
   ],
   process: [
-    { step: "01", title: "Shopify & Ads audit", description: "Review Google & YouTube app, feed sync, tracking setup, and current campaign performance vs. Shopify revenue." },
-    { step: "02", title: "Integration & tracking", description: "Fix feed configuration, implement GTM tracking, and validate conversion data against Shopify orders." },
-    { step: "03", title: "Campaign launch", description: "Build Shopping and/or PMax campaigns with margin segmentation and Shopify-optimized product data." },
-    { step: "04", title: "Optimize & scale", description: "Weekly product-level tuning, feed maintenance, seasonal updates, and ROAS scaling aligned to Shopify sales data." },
+    {
+      step: "01",
+      title: "Shopify & Ads audit",
+      description:
+        "Review Google & YouTube app, feed sync, tracking setup, and current campaign performance vs. Shopify revenue.",
+    },
+    {
+      step: "02",
+      title: "Integration & tracking",
+      description:
+        "Fix feed configuration, implement GTM tracking, and validate conversion data against Shopify orders.",
+    },
+    {
+      step: "03",
+      title: "Campaign launch",
+      description:
+        "Build Shopify Google Shopping and/or Performance Max campaigns with margin segmentation and optimized product data.",
+    },
+    {
+      step: "04",
+      title: "Optimize & scale",
+      description:
+        "Weekly product-level tuning, feed maintenance, seasonal updates, and ROAS scaling aligned to Shopify sales data.",
+    },
+  ],
+  caseResults: [
+    {
+      headline: "Shopify store ROAS scaled from 2.1× to 5.6×",
+      industry: "Beauty DTC — Shopify Plus",
+      metrics: [
+        { label: "ROAS (Shopify-validated)", before: "2.1×", after: "5.6×" },
+        { label: "Monthly Shopify revenue from Google", before: "$28K", after: "$89K" },
+      ],
+      summary:
+        "GTM tracking fix, custom label margin tiers, and Shopify Performance Max asset groups by product line drove scalable growth within 90 days.",
+    },
+    {
+      headline: "Feed errors cleared — Shopping live in 5 days",
+      industry: "Fashion Startup — Shopify Basic",
+      metrics: [
+        { label: "Disapproved products", before: "100%", after: "0.8%" },
+        { label: "Time to first sale from Google", before: "Never", after: "Day 3" },
+      ],
+      summary:
+        "Google & YouTube app reconfiguration, GTIN fixes, and shipping policy alignment restored product ads for a newly launched store.",
+    },
   ],
   faqs: [
-    { q: "Do you specialize in Shopify Google Ads?", a: "Yes. Shopify is the primary e-commerce platform I manage Google Ads for — including Google & YouTube app setup, GTM tracking, Merchant Center feeds, Shopping, PMax, and Search campaigns." },
-    { q: "Can you fix my Shopify conversion tracking?", a: "Absolutely. Shopify conversion tracking gaps are one of the most common issues I resolve — implementing GTM-based purchase tracking, enhanced conversions, and reconciliation with Shopify order reports." },
-    { q: "Should my Shopify store use Shopping or Performance Max?", a: "Most Shopify stores benefit from both. Shopping offers product-level control; PMax extends reach across Google surfaces. I recommend structure based on your catalog size, margin data, and current performance." },
-    { q: "How do you handle Shopify product feed errors?", a: "I audit the Google & YouTube app sync, fix title/GTIN/availability issues, configure custom labels, and resolve Merchant Center disapprovals — often caused by price mismatches or missing product identifiers." },
-    { q: "Do you work with Shopify Plus stores?", a: "Yes. I work with Shopify stores on all plans, including Shopify Plus with multi-store, B2B, and international market configurations." },
-    { q: "What's the cost of Shopify Google Ads management?", a: "I charge $35/hr on Upwork with hour packages. Setup and audit projects typically run 8–15 hours; ongoing management is 10–20+ hours per month depending on catalog size and campaign count." },
+    {
+      q: "Do you specialize in Shopify Google Ads?",
+      a: "Yes. Shopify is the primary e-commerce platform I manage Google Ads for — including Google & YouTube app setup, GTM tracking, Merchant Center feeds, Shopping, PMax, and Search campaigns.",
+    },
+    {
+      q: "Can you fix my Shopify conversion tracking?",
+      a: "Absolutely. Shopify conversion tracking gaps are one of the most common issues I resolve — implementing GTM-based purchase tracking, enhanced conversions, and reconciliation with Shopify order reports.",
+    },
+    {
+      q: "Should my Shopify store use Shopping or Performance Max?",
+      a: "Most Shopify stores benefit from both. Shopify Google Shopping offers product-level control; Shopify Performance Max extends reach across Google surfaces. I recommend structure based on catalog size and margin data.",
+    },
+    {
+      q: "How do you handle Shopify product feed errors?",
+      a: "I audit the Google & YouTube app sync, fix title/GTIN/availability issues, configure custom labels, and resolve Merchant Center disapprovals — often caused by price mismatches or missing product identifiers.",
+    },
+    {
+      q: "Do you work with Shopify Plus stores?",
+      a: "Yes. I work with Shopify stores on all plans, including Shopify Plus with multi-store, B2B, and international market configurations.",
+    },
+    {
+      q: "What's the cost of Shopify Google Ads management?",
+      a: "I charge $35/hr on Upwork with hour packages. Setup and audit projects typically run 8–15 hours; ongoing ecommerce PPC management is 10–20+ hours per month depending on catalog size.",
+    },
   ],
-  relatedLinks: relatedExcept("/shopify-google-ads-expert", ALL_SERVICE_LINKS),
+  conclusion: [
+    "Shopify stores need more than a connected Google & YouTube app to profit from Google Ads. A Shopify Google Ads expert fixes feed integration, validates conversion tracking against Shopify orders, and builds Shopping and Performance Max campaigns segmented by margin — so ecommerce PPC scales with real revenue.",
+    "I'm Umair Altaf — Shopify ads expert for stores spending $3K–$100K+ monthly on Google. Explore Google Shopping ads expert services, Merchant Center suspension fixes, or ecommerce SEO — or book a free strategy call to audit your Shopify Google Ads account.",
+  ],
+  relatedLinks: relatedExcept("/shopify-google-ads-expert"),
 };

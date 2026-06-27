@@ -15,21 +15,42 @@ export function buildFaqSchema(page: SeoPageContent) {
   };
 }
 
-export function buildServiceSchema(page: SeoPageContent) {
+export function buildProfessionalServiceSchema(page: SeoPageContent) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: page.metaTitle,
-    description: page.metaDescription,
-    url: `https://umairaltaf.com${page.path}`,
+    name: "Umair Altaf",
+    description:
+      "Performance marketing consultant specializing in Google Ads, Meta Ads, SEO, AI automation, and ecommerce growth.",
+    url: "https://umairaltaf.com",
     email: "info@umairaltaf.com",
     areaServed: "Worldwide",
-    provider: {
+    founder: {
       "@type": "Person",
       name: "Umair Altaf",
       jobTitle: "Performance Marketing Consultant",
     },
+  };
+}
+
+export function buildServiceSchema(page: SeoPageContent) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: page.targetKeyword,
+    description: page.metaDescription,
+    url: `https://umairaltaf.com${page.path}`,
     serviceType: page.schemaServiceType,
+    provider: {
+      "@type": "ProfessionalService",
+      name: "Umair Altaf",
+      url: "https://umairaltaf.com",
+      email: "info@umairaltaf.com",
+    },
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
   };
 }
 
@@ -67,7 +88,11 @@ export function applyPageSeo(page: SeoPageContent) {
   const script = document.createElement("script");
   script.id = schemaId;
   script.type = "application/ld+json";
-  script.textContent = JSON.stringify([buildServiceSchema(page), buildFaqSchema(page)]);
+  script.textContent = JSON.stringify([
+    buildProfessionalServiceSchema(page),
+    buildServiceSchema(page),
+    buildFaqSchema(page),
+  ]);
   document.head.appendChild(script);
 }
 

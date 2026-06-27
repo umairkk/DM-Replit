@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import {
   Check,
   Zap,
@@ -8,10 +9,12 @@ import {
   ShoppingBag,
   LineChart,
   BarChart3,
+  ArrowRight,
 } from "lucide-react";
 import { BookCallButton } from "@/components/cro/book-call-button";
 import { SectionBadge } from "@/components/cro/section-badge";
 import { SERVICE_OFFERINGS } from "@/content/cro-content";
+import { ALL_SERVICE_LINKS } from "@/content/seo-pages/shared";
 
 const SERVICE_ICONS = {
   google: MousePointerClick,
@@ -20,6 +23,13 @@ const SERVICE_ICONS = {
   ecommerce: ShoppingBag,
   tracking: LineChart,
   consulting: BarChart3,
+};
+
+const SERVICE_PAGE_LINKS: Record<string, string> = {
+  "google-ads": "/google-ads-consultant",
+  "meta-ads": "/meta-ads-expert",
+  ecommerce: "/shopify-google-ads-expert",
+  consulting: "/performance-max-specialist",
 };
 
 const FADE_UP = {
@@ -105,13 +115,42 @@ export function ServicesSection({ onBookCall }: ServicesSectionProps) {
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-white/5">
+                  <div className="mt-6 pt-4 border-t border-white/5 space-y-2">
+                    {SERVICE_PAGE_LINKS[service.id] && (
+                      <Link
+                        href={SERVICE_PAGE_LINKS[service.id]}
+                        className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+                      >
+                        Learn more <ArrowRight size={12} />
+                      </Link>
+                    )}
                     <BookCallButton onClick={onBookCall} size="sm" label="Book Free Call" className="w-full" />
                   </div>
                 </div>
               </motion.div>
             );
           })}
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={FADE_UP}
+          className="mt-14 pt-10 border-t border-white/5"
+        >
+          <p className="text-sm font-semibold text-muted-foreground mb-4">Specialist service pages</p>
+          <nav aria-label="SEO service pages" className="flex flex-wrap gap-2">
+            {ALL_SERVICE_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </motion.div>
       </div>
     </section>
