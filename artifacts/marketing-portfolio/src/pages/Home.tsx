@@ -556,16 +556,10 @@ export default function Home() {
                   {/* Outer glow */}
                   <div className="absolute inset-[-8px] rounded-full bg-primary/20 blur-xl" />
                   {/* Avatar face */}
-                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full border-2 border-background overflow-hidden bg-background">
-                    <img
-                      src="/umair-altaf-profile.jpg"
-                      alt="Umair Altaf — Performance Marketing Consultant"
-                      className="w-full h-full object-cover object-[center_20%]"
-                      width={160}
-                      height={160}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-background flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                    <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary select-none">
+                      UA
+                    </span>
                   </div>
                   {/* Online badge */}
                   <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-background flex items-center justify-center">
