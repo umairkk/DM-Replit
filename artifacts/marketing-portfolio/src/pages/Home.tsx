@@ -521,7 +521,7 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                 <p>
-                  I'm a digital marketing specialist with 10+ years of hands-on experience running paid acquisition and analytics for digital agencies, NGOs and private clients. Based in Karachi, Pakistan and working with clients globally, I focus on one thing: delivering measurable returns on every dollar spent.
+                  I'm a digital marketing specialist with 10+ years of hands-on experience running paid acquisition and analytics for digital agencies, NGOs and private clients. Working with clients globally, I focus on one thing: delivering measurable returns on every dollar spent.
                 </p>
                 <p>
                   My core stack covers Google Ads (Search, PMax, Shopping, Display, Dynamic Remarketing), Meta Ads across Facebook and Instagram, Bing Ads, LinkedIn campaigns and SEO. I lean heavily on SPAG/SKAG structures, A/B testing and bid optimization to keep campaigns lean and conversion rates high.
@@ -555,7 +555,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-center text-sm text-muted-foreground -mt-2">
-                <span className="font-semibold text-foreground">Umair A.</span> · Karachi, Pakistan · <span className="text-emerald-400">Available</span>
+                <span className="font-semibold text-foreground">Umair A.</span> · <span className="text-emerald-400">Available</span>
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-2xl blur-3xl opacity-50 -z-10"></div>
               <div className="grid grid-cols-2 gap-4 relative z-10">
