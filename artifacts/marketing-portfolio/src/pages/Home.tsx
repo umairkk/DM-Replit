@@ -529,7 +529,7 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                 <p>
-                  Performance marketing consultant with 10+ years managing Google Ads, Meta Ads, Bing, and LinkedIn campaigns for agencies, e-commerce brands, and lead-gen businesses globally. Based in Karachi, Pakistan — serving clients worldwide.
+                  Performance marketing consultant with 10+ years managing Google Ads, Meta Ads, Bing, and LinkedIn campaigns for agencies, e-commerce brands, and lead-gen businesses globally.
                 </p>
                 <p>
                   I&apos;ve generated $50M+ in tracked revenue and managed $15M+ in ad spend across 50+ businesses. My focus is always the same: lower CPL, higher ROAS, and clean conversion tracking you can trust.
@@ -574,7 +574,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-center text-sm text-muted-foreground -mt-2">
-                <span className="font-semibold text-foreground">Umair A.</span> · Karachi, Pakistan · <span className="text-emerald-400">Available</span>
+                <span className="font-semibold text-foreground">Umair A.</span> · <span className="text-emerald-400">Available</span>
               </div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-2xl blur-3xl opacity-50 -z-10"></div>
               <div className="grid grid-cols-2 gap-4 relative z-10">
