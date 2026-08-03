@@ -15,12 +15,9 @@ import {
   GraduationCap,
   Heart,
   Home as HomeIcon,
-  Instagram,
   Landmark,
   LineChart, 
-  Linkedin,
   Mail, 
-  MessageSquare, 
   MousePointerClick, 
   Scale,
   Search,
@@ -33,10 +30,8 @@ import {
   Sparkles,
   Star,
   Stethoscope,
-  Terminal, 
   TrendingDown,
   TrendingUp,
-  Twitter,
   Wrench,
   Zap
 } from "lucide-react";
@@ -59,6 +54,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PartnerBadgeIcon } from "@/components/partner-badge-icon";
 import { ClientLogoCarousel } from "@/components/client-logo-carousel";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { BookCallButton } from "@/components/cro/book-call-button";
 import { CaseStudiesSection } from "@/components/cro/case-studies-section";
 import { CertificationsRow } from "@/components/cro/certifications-row";
@@ -1294,29 +1290,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 border-t border-white/5 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="flex items-center gap-2 font-bold tracking-tight">
-            <Terminal size={16} className="text-primary" />
-            <span>Umair A<span className="text-primary">.</span></span>
-          </div>
-          
-          <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Umair Altaf — Performance Marketing Consultant. All rights reserved.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <BookCallButton onClick={scrollToSchedule} size="sm" label="Book Strategy Call" />
-            <div className="flex items-center gap-4 text-muted-foreground">
-            <a href="https://www.upwork.com/freelancers/~0174e59cfe9730a3cd" target="_blank" rel="noopener noreferrer" aria-label="Upwork" className="hover:text-primary transition-colors p-2"><MessageSquare size={18} /></a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-primary transition-colors p-2"><Linkedin size={18} /></a>
-            <a href="#" aria-label="Twitter" className="hover:text-primary transition-colors p-2"><Twitter size={18} /></a>
-            <a href="#" aria-label="Instagram" className="hover:text-primary transition-colors p-2"><Instagram size={18} /></a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter onBookCall={scrollToSchedule} />
     </div>
   );
 }

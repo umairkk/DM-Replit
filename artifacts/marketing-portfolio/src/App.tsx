@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import { SeoRoutePage } from "@/pages/SeoRoutePage";
 import { SEO_PAGES } from "@/content/seo-pages";
 
@@ -13,6 +14,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
       {Object.values(SEO_PAGES).map((page) => (
         <Route key={page.path} path={page.path}>
           <SeoRoutePage page={page} />
