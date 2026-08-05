@@ -31,11 +31,11 @@ export type ClientLogo = {
   href: string;
 };
 
-/** Replace with Stripe Payment Links when ready (leave empty or REPLACE to use contact fallback). */
+/** @deprecated Use pricing checkout via Stripe Checkout Sessions (see .env.example). */
 export const STRIPE_CHECKOUT_LINKS = {
-  starter: "https://buy.stripe.com/REPLACE_STARTER",
-  growth: "https://buy.stripe.com/REPLACE_GROWTH",
-  scale: "https://buy.stripe.com/REPLACE_SCALE",
+  starter: "",
+  growth: "",
+  scale: "",
 } as const;
 
 export const CONTACT_EMAIL = "info@umairaltaf.com";

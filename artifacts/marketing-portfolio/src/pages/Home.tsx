@@ -10,7 +10,6 @@ import {
   Check,
   Clock,
   Cloud,
-  CreditCard,
   Gem,
   GraduationCap,
   Heart,
@@ -80,16 +79,13 @@ import {
   TRUST_BADGES,
 } from "@/content/site-content";
 import { submitContactFormElement } from "@/lib/submit-contact";
+import { PricingSection } from "@/components/pricing/pricing-section";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
-
-function isStripeCheckoutReady(link: string) {
-  return Boolean(link && !link.includes("REPLACE"));
-}
 
 const FADE_UP = {
   hidden: { opacity: 0, y: 30 },
@@ -949,209 +945,7 @@ export default function Home() {
 
       <EnhancedTestimonialsSection />
 
-      {/* Hire Me Section */}
-      <section id="hire" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-              <CreditCard size={14} /> Buy Hours
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Hire me by the hour — no retainers, no surprises</h2>
-            <p className="text-muted-foreground text-lg">
-              Pick a package, pay securely via Stripe, and I'll get started within 24 hours. Hours roll over — use them across any service.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={STAGGER}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
-          >
-            {[
-              {
-                name: "Starter",
-                hours: 5,
-                price: 175,
-                perHour: 35,
-                color: "primary",
-                popular: false,
-                desc: "Perfect for a quick audit, account setup, or a campaign review with a clear action plan.",
-                features: [
-                  "Google or Meta account audit",
-                  "Keyword / audience research",
-                  "Campaign setup or fix",
-                  "Written recommendations report",
-                  "1 revision round",
-                ],
-                stripeLink: "https://buy.stripe.com/REPLACE_STARTER",
-              },
-              {
-                name: "Growth",
-                hours: 10,
-                price: 350,
-                perHour: 35,
-                color: "secondary",
-                popular: true,
-                desc: "Ideal for ongoing campaign management, A/B testing and one full optimization cycle.",
-                features: [
-                  "Everything in Starter",
-                  "Multi-channel campaign management",
-                  "A/B ad copy & creative testing",
-                  "Bid strategy optimization",
-                  "GA4 + GTM event setup",
-                  "Weekly progress update",
-                ],
-                stripeLink: "https://buy.stripe.com/REPLACE_GROWTH",
-              },
-              {
-                name: "Scale",
-                hours: 20,
-                price: 700,
-                perHour: 35,
-                color: "primary",
-                popular: false,
-                desc: "Full strategy build — from zero to running across Google, Meta, Bing and LinkedIn.",
-                features: [
-                  "Everything in Growth",
-                  "Full multi-channel strategy",
-                  "Landing page CRO recommendations",
-                  "Competitor & SERP analysis",
-                  "Attribution & funnel reporting",
-                  "Priority Slack / WhatsApp access",
-                  "Bi-weekly strategy calls",
-                ],
-                stripeLink: "https://buy.stripe.com/REPLACE_SCALE",
-              },
-            ].map((pkg, i) => (
-              <motion.div key={i} variants={FADE_UP} className="relative">
-                {pkg.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                    <span className="inline-flex items-center gap-1 bg-secondary text-secondary-foreground text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                      <Star size={10} fill="currentColor" /> Most Popular
-                    </span>
-                  </div>
-                )}
-                <Card className={`h-full flex flex-col transition-all duration-300 ${
-                  pkg.popular
-                    ? "border-secondary/50 shadow-[0_0_30px_rgba(139,92,246,0.2)] bg-card/80"
-                    : "border-white/10 bg-background/60 hover:border-white/20"
-                }`}>
-                  <CardContent className="p-5 sm:p-8 flex flex-col h-full">
-                    {/* Header */}
-                    <div className="mb-6">
-                      <div className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-3 ${
-                        pkg.color === "secondary"
-                          ? "bg-secondary/10 text-secondary border border-secondary/20"
-                          : "bg-primary/10 text-primary border border-primary/20"
-                      }`}>
-                        <Clock size={10} /> {pkg.hours} Hours
-                      </div>
-                      <h3 className="text-2xl font-extrabold mb-1">{pkg.name}</h3>
-                      <div className="flex items-baseline gap-2 mb-3">
-                        <span className={`text-4xl font-extrabold ${pkg.color === "secondary" ? "text-secondary" : "text-primary"}`}>
-                          ${pkg.price}
-                        </span>
-                        <span className="text-muted-foreground text-sm">${pkg.perHour}/hr</span>
-                      </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{pkg.desc}</p>
-                    </div>
-
-                    {/* Features */}
-                    <ul className="space-y-3 mb-8 flex-1">
-                      {pkg.features.map((f, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-sm">
-                          <div className={`mt-0.5 shrink-0 w-4 h-4 rounded-full flex items-center justify-center ${
-                            pkg.color === "secondary" ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary"
-                          }`}>
-                            <Check size={10} strokeWidth={3} />
-                          </div>
-                          <span className="text-foreground/80">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA */}
-                    {isStripeCheckoutReady(pkg.stripeLink) ? (
-                      <a
-                        href={pkg.stripeLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center justify-center gap-2 w-full h-12 rounded-xl font-semibold text-sm transition-all ${
-                          pkg.popular
-                            ? "bg-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_20px_rgba(139,92,246,0.35)]"
-                            : "bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20"
-                        }`}
-                      >
-                        <CreditCard size={16} />
-                        Buy {pkg.hours} Hours — ${pkg.price}
-                      </a>
-                    ) : (
-                      <Button
-                        type="button"
-                        onClick={() => scrollTo("contact")}
-                        className={`w-full h-12 rounded-xl font-semibold text-sm ${
-                          pkg.popular
-                            ? "bg-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_20px_rgba(139,92,246,0.35)]"
-                            : "bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20"
-                        }`}
-                      >
-                        <Mail size={16} className="mr-2" />
-                        Contact to Purchase
-                      </Button>
-                    )}
-
-                    <p className="text-[11px] text-muted-foreground text-center mt-3">
-                      {isStripeCheckoutReady(pkg.stripeLink)
-                        ? "Secure checkout via Stripe · Hours never expire"
-                        : "Stripe checkout coming soon · Contact me to get started"}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Trust row */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground"
-          >
-            {[
-              { icon: CreditCard, text: "Stripe-secured payment" },
-              { icon: Clock, text: "Work starts within 24 hrs" },
-              { icon: Check, text: "100% Job Success on Upwork" },
-              { icon: Star, text: "Top Rated freelancer" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <item.icon size={15} className="text-primary" />
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={FADE_UP}
-            className="mt-10 text-center"
-          >
-            <BookCallButton onClick={scrollToSchedule} label="Not sure which package? Book a free call" />
-          </motion.div>
-        </div>
-      </section>
+      <PricingSection onScheduleConsultation={scrollToSchedule} />
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-24 bg-card/30 border-t border-white/5 relative overflow-hidden">

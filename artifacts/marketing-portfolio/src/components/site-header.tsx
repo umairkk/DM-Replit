@@ -6,6 +6,7 @@ import { SERVICE_NAV_LINKS } from "@/content/seo-pages";
 
 const NAV_LINKS = [
   { label: "Results", id: "results" },
+  { label: "Pricing", id: "pricing" },
   { label: "Case Studies", id: "casestudies" },
   { label: "About", id: "about" },
   { label: "Free Audit", id: "audit" },

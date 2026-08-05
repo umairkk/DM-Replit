@@ -10,6 +10,10 @@
     "dev:portfolio": "pnpm --filter @workspace/marketing-portfolio run dev"
   },
   "private": true,
+  "dependencies": {
+    "@netlify/functions": "^2.8.2",
+    "@workspace/stripe": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "~5.9.2",
     "prettier": "^3.8.1"

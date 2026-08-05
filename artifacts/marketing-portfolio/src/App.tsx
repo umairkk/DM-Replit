@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import Onboarding from "@/pages/Onboarding";
 import { SeoRoutePage } from "@/pages/SeoRoutePage";
 import { SEO_PAGES } from "@/content/seo-pages";
 
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/onboarding" component={Onboarding} />
       {Object.values(SEO_PAGES).map((page) => (
         <Route key={page.path} path={page.path}>
           <SeoRoutePage page={page} />

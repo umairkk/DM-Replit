@@ -5,7 +5,12 @@
 [build.environment]
   BASE_PATH = "/"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  conditions = {Method = ["GET"]}
