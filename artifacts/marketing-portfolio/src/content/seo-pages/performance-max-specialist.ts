@@ -5,9 +5,12 @@ export const performanceMaxSpecialistPage: SeoPageContent = {
   slug: "performance-max-specialist",
   path: "/performance-max-specialist",
   targetKeyword: "Performance Max Specialist",
-  metaTitle: "Performance Max Specialist | Umair Altaf — PMax ROAS",
+  metaTitle: "Performance Max Specialist | Umair Altaf — PMax Campaign Expert",
   metaDescription:
-    "Performance Max specialist for PMax campaign management, asset groups, audience signals, and ROAS optimization. 10+ years experience. Free strategy call.",
+    "Performance Max campaigns built and optimized for real revenue growth. Asset groups, signals, and budget strategy done right — not left to Google's defaults.",
+  ogTitle: "Performance Max Specialist — Umair Altaf",
+  ogDescription:
+    "PMax campaign setup and optimization focused on profitable growth, backed by 10+ years of Google Ads experience.",
   keywords: [
     "Performance Max Specialist",
     "PMax campaign management",

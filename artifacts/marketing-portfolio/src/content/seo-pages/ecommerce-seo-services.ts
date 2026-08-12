@@ -5,9 +5,12 @@ export const ecommerceSeoServicesPage: SeoPageContent = {
   slug: "ecommerce-seo-services",
   path: "/ecommerce-seo-services",
   targetKeyword: "Ecommerce SEO Services",
-  metaTitle: "Ecommerce SEO Services | Umair Altaf — Shopify SEO",
+  metaTitle: "Ecommerce SEO Services | Umair Altaf — Organic Growth",
   metaDescription:
-    "Ecommerce SEO services for Shopify SEO, Magento SEO, product page optimization, and organic traffic growth. 10+ years experience. Free strategy call.",
+    "Ecommerce SEO services designed to grow organic traffic and sales - technical audits, content strategy, and on-page optimization that ranks.",
+  ogTitle: "Ecommerce SEO Services — Umair Altaf",
+  ogDescription:
+    "SEO strategy built specifically for ecommerce brands to grow organic visibility and revenue.",
   keywords: [
     "Ecommerce SEO Services",
     "Shopify SEO",

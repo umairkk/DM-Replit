@@ -5,9 +5,12 @@ export const shopifyGoogleAdsExpertPage: SeoPageContent = {
   slug: "shopify-google-ads-expert",
   path: "/shopify-google-ads-expert",
   targetKeyword: "Shopify Google Ads Expert",
-  metaTitle: "Shopify Google Ads Expert | Umair Altaf — Shopping & PMax",
+  metaTitle: "Shopify Google Ads Expert | Umair Altaf",
   metaDescription:
-    "Shopify Google Ads expert for Shopping, Performance Max, feed integration, and conversion tracking. Scale your Shopify store with profitable PPC. Free strategy call.",
+    "Google Ads management built for Shopify stores — feed setup, conversion tracking, and campaigns optimized to grow store revenue.",
+  ogTitle: "Shopify Google Ads Expert - Umair Altaf",
+  ogDescription:
+    "Google Ads specialist for Shopify brands, focused on accurate tracking, feed health, and profitable scaling.",
   keywords: [
     "Shopify Google Ads Expert",
     "Shopify ads expert",

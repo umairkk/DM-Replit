@@ -5,9 +5,12 @@ export const googleAdsConsultantPage: SeoPageContent = {
   slug: "google-ads-consultant",
   path: "/google-ads-consultant",
   targetKeyword: "Google Ads Consultant",
-  metaTitle: "Google Ads Consultant | Umair Altaf — PPC Expert",
+  metaTitle: "Google Ads Consultant | Umair Altaf — PPC & Lead Generation Expert",
   metaDescription:
-    "Hire a Google Ads consultant with 10+ years experience and $50M+ revenue generated. Search, Shopping, PMax & tracking fixes. Book a free strategy call.",
+    "Certified Google Ads consultant with 10+ years managing high-ROI campaigns. Cut wasted spend, scale qualified leads. Book a free strategy call today.",
+  ogTitle: "Google Ads Consultant — Umair Altaf",
+  ogDescription:
+    "Data-driven Google Ads management focused on lead quality and ROAS, not just clicks. Free strategy call available.",
   keywords: [
     "Google Ads Consultant",
     "Google Ads expert",

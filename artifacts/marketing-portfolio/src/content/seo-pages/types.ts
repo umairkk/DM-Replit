@@ -43,6 +43,8 @@ export type SeoPageContent = {
   targetKeyword: string;
   metaTitle: string;
   metaDescription: string;
+  ogTitle: string;
+  ogDescription: string;
   keywords: string[];
   schemaServiceType: string;
   badge: string;

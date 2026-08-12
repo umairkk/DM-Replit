@@ -70,10 +70,12 @@ export function applyPageSeo(page: SeoPageContent) {
 
   setMeta("description", page.metaDescription);
   setMeta("keywords", page.keywords.join(", "));
-  setMeta("og:title", page.metaTitle, true);
-  setMeta("og:description", page.metaDescription, true);
+  setMeta("og:title", page.ogTitle, true);
+  setMeta("og:description", page.ogDescription, true);
   setMeta("og:url", `https://umairaltaf.com${page.path}`, true);
   setMeta("og:type", "website", true);
+  setMeta("twitter:title", page.ogTitle);
+  setMeta("twitter:description", page.ogDescription);
 
   let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
   if (!canonical) {

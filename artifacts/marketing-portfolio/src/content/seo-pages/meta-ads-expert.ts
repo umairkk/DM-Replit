@@ -5,9 +5,12 @@ export const metaAdsExpertPage: SeoPageContent = {
   slug: "meta-ads-expert",
   path: "/meta-ads-expert",
   targetKeyword: "Meta Ads Expert",
-  metaTitle: "Meta Ads Expert | Umair Altaf — Facebook & Instagram",
+  metaTitle: "Meta Ads Expert | Umair Altaf - Facebook & Instagram Ads",
   metaDescription:
-    "Meta ads expert for Facebook and Instagram campaign management, CAPI setup, and lead gen optimization. 10+ years experience. Book a free strategy call.",
+    "Meta Ads expert managing Facebook & Instagram campaigns that convert. Creative testing, audience strategy, and scaling built on data, not guesswork.",
+  ogTitle: "Meta Ads Expert - Umair Altaf",
+  ogDescription:
+    "Facebook and Instagram ad campaigns managed for consistent, profitable lead and sales growth.",
   keywords: [
     "Meta Ads Expert",
     "Facebook ads expert",

@@ -7,7 +7,10 @@ export const googleMerchantCenterSuspensionFixPage: SeoPageContent = {
   targetKeyword: "Google Merchant Center Suspension Fix",
   metaTitle: "Google Merchant Center Suspension Fix | Umair Altaf",
   metaDescription:
-    "Google Merchant Center suspension fix expert. GMC reinstatement, feed fixes, and policy compliance. 10+ years fixing Shopping disapprovals. Free strategy call.",
+    "Merchant Center account suspended? Get it reinstated fast with a proven fix process — policy violations, misrepresentation, and shopping feed issues resolved.",
+  ogTitle: "Fix Your Suspended Google Merchant Center Account",
+  ogDescription:
+    "Specialist help to diagnose and reinstate suspended Google Merchant Center accounts quickly, without losing ad performance history.",
   keywords: [
     "Google Merchant Center Suspension Fix",
     "Merchant Center misrepresentation fix",

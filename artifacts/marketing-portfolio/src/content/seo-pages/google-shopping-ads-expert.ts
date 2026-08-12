@@ -5,9 +5,12 @@ export const googleShoppingAdsExpertPage: SeoPageContent = {
   slug: "google-shopping-ads-expert",
   path: "/google-shopping-ads-expert",
   targetKeyword: "Google Shopping Ads Expert",
-  metaTitle: "Google Shopping Ads Expert | Umair Altaf",
+  metaTitle: "Google Shopping Ads Expert | Umair Altaf — Ecommerce PPC",
   metaDescription:
-    "Google Shopping ads expert for feed optimization, campaign structure, and ROAS scaling. 10+ years ecommerce experience. Book a free strategy call.",
+    "Expert Google Shopping Ads management for ecommerce brands. Optimized feeds, smart bidding, and campaigns built to grow revenue, not just traffic.",
+  ogTitle: "Google Shopping Ads Expert — Umair Altaf",
+  ogDescription:
+    "Feed optimization and Shopping campaign strategy for ecommerce brands ready to scale profitably.",
   keywords: [
     "Google Shopping Ads Expert",
     "Shopping ads management",

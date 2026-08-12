@@ -5,9 +5,12 @@ export const aiAutomationAgencyPage: SeoPageContent = {
   slug: "ai-automation-agency",
   path: "/ai-automation-agency",
   targetKeyword: "AI Automation Agency",
-  metaTitle: "AI Automation Agency | Umair Altaf — Marketing Ops",
+  metaTitle: "AI Automation Agency | Umair Altaf — Marketing Workflows",
   metaDescription:
-    "AI automation agency for business automation, CRM workflows, lead nurturing, and marketing ops. Built by a $50M+ performance consultant. Free strategy call.",
+    "AI-powered automation for marketing and business workflows — save time, cut manual work, and scale operations without adding headcount.",
+  ogTitle: "AI Automation Agency — Umair Altaf",
+  ogDescription:
+    "Custom AI automation solutions to streamline marketing operations and business workflows.",
   keywords: [
     "AI Automation Agency",
     "business automation",
