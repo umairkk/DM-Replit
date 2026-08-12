@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, MessageSquare, Terminal, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageSquare, Terminal } from "lucide-react";
 import { Link } from "wouter";
 import { BookCallButton } from "@/components/cro/book-call-button";
 
@@ -45,11 +45,23 @@ export function SiteFooter({ onBookCall }: SiteFooterProps) {
             >
               <MessageSquare size={18} />
             </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-primary transition-colors p-2">
+            <a
+              href="https://www.linkedin.com/in/umairkk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-primary transition-colors p-2"
+            >
               <Linkedin size={18} />
             </a>
-            <a href="#" aria-label="Twitter" className="hover:text-primary transition-colors p-2">
-              <Twitter size={18} />
+            <a
+              href="https://www.facebook.com/umairaltaf24"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="hover:text-primary transition-colors p-2"
+            >
+              <Facebook size={18} />
             </a>
             <a href="#" aria-label="Instagram" className="hover:text-primary transition-colors p-2">
               <Instagram size={18} />
