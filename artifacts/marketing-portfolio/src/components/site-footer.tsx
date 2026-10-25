@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Linkedin, MessageSquare, Terminal } from "lucide-react";
 import { Link } from "wouter";
 import { BookCallButton } from "@/components/cro/book-call-button";
+import { SiteFooterUsaLinks } from "@/components/site-footer-usa-links";
 
 type SiteFooterProps = {
   onBookCall?: () => void;
@@ -12,7 +13,9 @@ export function SiteFooter({ onBookCall }: SiteFooterProps) {
   });
 
   return (
-    <footer className="py-10 border-t border-white/5 bg-background">
+    <>
+      <SiteFooterUsaLinks />
+      <footer className="py-10 border-t border-white/5 bg-background">
       <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         <div className="flex items-center gap-2 font-bold tracking-tight">
           <Terminal size={16} className="text-primary" />
@@ -69,6 +72,7 @@ export function SiteFooter({ onBookCall }: SiteFooterProps) {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 }

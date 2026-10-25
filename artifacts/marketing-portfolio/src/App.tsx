@@ -7,7 +7,9 @@ import Home from "@/pages/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Onboarding from "@/pages/Onboarding";
 import { SeoRoutePage } from "@/pages/SeoRoutePage";
+import UsaLeadGenHub from "@/pages/UsaLeadGenHub";
 import { SEO_PAGES } from "@/content/seo-pages";
+import { USA_LEAD_GEN_PAGES } from "@/content/usa-lead-gen";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,12 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/onboarding" component={Onboarding} />
+      <Route path="/usa-lead-generation" component={UsaLeadGenHub} />
+      {Object.values(USA_LEAD_GEN_PAGES).map((page) => (
+        <Route key={page.path} path={page.path}>
+          <SeoRoutePage page={page} />
+        </Route>
+      ))}
       {Object.values(SEO_PAGES).map((page) => (
         <Route key={page.path} path={page.path}>
           <SeoRoutePage page={page} />
