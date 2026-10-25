@@ -14,13 +14,13 @@ export default function UsaLeadGenHub() {
   useEffect(() => {
     document.documentElement.classList.add("dark");
     applyPageSeo({
-      title: "USA Lead Generation — Industry Priority List | Umair Altaf",
+      title: "USA Lead Generation | Umair Altaf",
       description:
-        "Strategic priority industries for Google Ads, Facebook and Instagram lead generation in the USA. Explore Meta and Google campaign guidance by vertical.",
+        "Explore USA industries for Google Ads, Facebook and Instagram lead generation. Dedicated landing pages with channel-specific ad strategy guidance.",
       path: "/usa-lead-generation",
-      ogTitle: "USA Lead Generation Industry Priority List",
+      ogTitle: "USA Lead Generation by Industry",
       ogDescription:
-        "Explore 30 USA industries prioritized for Google, Facebook and Instagram lead generation — with dedicated landing pages and ad strategy guidance.",
+        "Explore 30 USA industries with dedicated landing pages for Google, Facebook and Instagram lead generation.",
     });
 
     return () => resetHomeSeo();
