@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
 import { ArrowRight, Flag } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -74,9 +73,9 @@ export default function UsaLeadGenHub() {
             <ul className="divide-y divide-white/5">
               {USA_LEAD_GEN_INDUSTRIES.map((item) => (
                 <li key={item.slug}>
-                  <Link
+                  <a
                     href={`/usa-lead-generation/${item.slug}`}
-                    className="grid grid-cols-[3rem_1fr_auto] gap-3 px-4 py-4 items-center hover:bg-white/[0.03] transition-colors group"
+                    className="grid grid-cols-[3rem_1fr_auto] gap-3 px-4 py-4 items-center hover:bg-white/[0.03] transition-colors group cursor-pointer"
                   >
                     <span className="text-sm font-bold text-primary">{item.priority}</span>
                     <div>
@@ -91,7 +90,7 @@ export default function UsaLeadGenHub() {
                       View
                       <ArrowRight size={14} />
                     </span>
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
