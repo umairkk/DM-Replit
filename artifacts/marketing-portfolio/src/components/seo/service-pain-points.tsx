@@ -9,10 +9,17 @@ import { Card, CardContent } from "@/components/ui/card";
 type ServicePainPointsProps = {
   points: SeoPainPoint[];
   targetKeyword: string;
+  painPointsKeyword?: string;
   onBookCall: () => void;
 };
 
-export function ServicePainPoints({ points, targetKeyword, onBookCall }: ServicePainPointsProps) {
+export function ServicePainPoints({
+  points,
+  targetKeyword,
+  painPointsKeyword,
+  onBookCall,
+}: ServicePainPointsProps) {
+  const headingKeyword = painPointsKeyword ?? targetKeyword;
   return (
     <section className="py-16 md:py-24 bg-card/20 border-y border-white/5">
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
@@ -25,7 +32,7 @@ export function ServicePainPoints({ points, targetKeyword, onBookCall }: Service
         >
           <SectionBadge icon={AlertTriangle}>Common Problems</SectionBadge>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            What goes wrong without a dedicated {targetKeyword.toLowerCase()}
+            What goes wrong without a dedicated {headingKeyword.toLowerCase()}
           </h2>
           <p className="text-muted-foreground max-w-2xl">
             These are the issues I fix first — because they drain budget, kill conversions, and block growth.
