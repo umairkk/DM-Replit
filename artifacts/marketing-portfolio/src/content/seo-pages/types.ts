@@ -54,6 +54,8 @@ export type SeoPageContent = {
   heroStats: { value: string; label: string }[];
   /** Trust-focused intro paragraphs; first should mention target keyword */
   intro: string[];
+  /** Optional heading keyword for the pain-points section (defaults to targetKeyword) */
+  painPointsKeyword?: string;
   painPoints: SeoPainPoint[];
   solution: {
     title: string;

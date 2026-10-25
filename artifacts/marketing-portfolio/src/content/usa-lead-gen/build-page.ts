@@ -1,5 +1,6 @@
 import { HERO_STATS, relatedExcept } from "@/content/seo-pages/shared";
 import type { SeoPageContent } from "@/content/seo-pages/types";
+import { painPointsKeywordFromMetaTitle, USA_INDUSTRY_PAIN_POINTS } from "./industry-pain-points";
 import type { UsaLeadGenIndustryInput } from "./types";
 
 const BASE_PATH = "/usa-lead-generation";
@@ -13,12 +14,18 @@ function platformLabel(platform: UsaLeadGenIndustryInput["platform"]) {
 export function buildUsaLeadGenPage(input: UsaLeadGenIndustryInput): SeoPageContent {
   const path = `${BASE_PATH}/${input.slug}`;
   const targetKeyword = `${input.industry} Lead Generation`;
+  const painPointsKeyword = painPointsKeywordFromMetaTitle(input.metaTitle);
+  const painPoints = USA_INDUSTRY_PAIN_POINTS[input.slug];
+  if (!painPoints) {
+    throw new Error(`Missing pain points for USA lead gen slug: ${input.slug}`);
+  }
   const platformText = platformLabel(input.platform);
 
   return {
     slug: input.slug,
     path,
     targetKeyword,
+    painPointsKeyword,
     metaTitle: input.metaTitle,
     metaDescription: input.metaDescription,
     ogTitle: input.metaTitle,
@@ -42,37 +49,7 @@ export function buildUsaLeadGenPage(input: UsaLeadGenIndustryInput): SeoPageCont
       `I help ${input.industry.toLowerCase()} teams build ${input.platform.toLowerCase()} and Google Ads funnels focused on qualified inquiries — not vanity clicks. Campaigns are structured around your service area, offer, and compliance requirements, with weekly optimization and clear reporting.`,
       `This page reflects a strategic priority for ${platformText} lead generation in the USA. It is guidance for planning and budgeting — not a verified performance ranking or guarantee of results.`,
     ],
-    painPoints: [
-      {
-        title: "Low-quality leads from broad targeting",
-        description:
-          "Campaigns optimized for form fills instead of qualified inquiries waste budget on tire-kickers and out-of-area requests.",
-      },
-      {
-        title: "Tracking gaps after iOS and cookie changes",
-        description:
-          "When Meta pixel and GA4 events do not match CRM outcomes, algorithms optimize toward the wrong signals.",
-      },
-      {
-        title: "Creative fatigue in local markets",
-        description:
-          "Static ads burn out quickly in competitive metros, driving up CPL while conversion rates fall.",
-      },
-      {
-        title: "Policy and compliance friction",
-        description: `${input.industry} categories often face ad policy reviews, limited targeting, or restricted messaging — mistakes delay launches.`,
-      },
-      {
-        title: "No connection between ads and sales follow-up",
-        description:
-          "Even strong campaigns fail when lead routing, speed-to-lead, and offer alignment are missing on the back end.",
-      },
-      {
-        title: "Google vs. Meta budget imbalance",
-        description:
-          "Teams overspend on one channel without testing search intent vs. social demand for their specific services.",
-      },
-    ],
+    painPoints,
     solution: {
       title: `${input.platform} + Google Ads strategy for ${input.industry}`,
       paragraphs: [

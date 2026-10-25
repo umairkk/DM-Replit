@@ -61,7 +61,12 @@ export function SeoPageView({ page }: SeoPageViewProps) {
       <main>
         <ServiceHero page={page} onBookCall={goToSchedule} />
         <ServiceIntro paragraphs={page.intro} />
-        <ServicePainPoints points={page.painPoints} targetKeyword={page.targetKeyword} onBookCall={goToSchedule} />
+        <ServicePainPoints
+          points={page.painPoints}
+          targetKeyword={page.targetKeyword}
+          painPointsKeyword={page.painPointsKeyword}
+          onBookCall={goToSchedule}
+        />
         <ServiceSolution solution={page.solution} targetKeyword={page.targetKeyword} onBookCall={goToSchedule} />
         <ServiceIncluded items={page.servicesIncluded} onBookCall={goToSchedule} />
         <ServiceBenefits items={page.whyChoose} onBookCall={goToSchedule} />
