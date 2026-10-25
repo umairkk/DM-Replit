@@ -57,13 +57,9 @@ export default function UsaLeadGenHub() {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold tracking-tight">USA Lead Generation</h1>
-              <p className="text-sm text-muted-foreground mt-1">Industry priority list</p>
             </div>
           </div>
 
-          <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-            Strategic priority for Google Ads, Facebook &amp; Instagram | Not a verified performance ranking
-          </p>
           <p className="text-sm text-muted-foreground mb-10">
             Select an industry to view SEO landing pages with channel-specific guidance, common challenges, and
             how Meta and Google Ads can support qualified lead generation in the United States.
